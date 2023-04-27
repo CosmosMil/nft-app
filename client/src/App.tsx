@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+interface User {
+  email: String,
+  username: String,
+  password: String
+}
+
+type Users = User[]
+
 function App() {
+  const [users, setUsers] = useState< null | Users> (null);
+
+  const getUsers =async () => {
+    try {
+      const response = await fetch("localhost:5001/api/user/all");
+      const result = await response.json();
+      setUsers(result);
+      console.log(result);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getUsers();
+}, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>heya</h1>
+      {users && users.map((user) => {
+        return <p>{user.username}</p>
+      })}
     </div>
   );
 }
