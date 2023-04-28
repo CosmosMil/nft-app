@@ -3,9 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 
 interface User {
-  email: String,
-  username: String,
-  password: String
+  email: string,
+  username: string,
+  password: string
+  _id: string
 }
 
 type Users = User[]
@@ -15,7 +16,7 @@ function App() {
 
   const getUsers =async () => {
     try {
-      const response = await fetch("localhost:5001/api/user/all");
+      const response = await fetch("http://localhost:5001/api/user/all");
       const result = await response.json();
       setUsers(result);
       console.log(result);
@@ -32,7 +33,7 @@ function App() {
     <div className="App">
       <h1>heya</h1>
       {users && users.map((user) => {
-        return <p>{user.username}</p>
+        return <p key = {user._id}>{user.username}</p>
       })}
     </div>
   );

@@ -4,9 +4,10 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import userRouter from "./routes/userRoutes.js";
 import cors from "cors";
+import NFTRouter from "./routes/nftRoutes.js";
 
 const app = express();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5002;
 
 app.use(express.json());
 app.use(
@@ -33,7 +34,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/api/user", userRouter);
-
+app.use("/api/NFTs", NFTRouter)
 // const helloFunction = (req, res) => {
 //   res.send("Heya!");
 // };
