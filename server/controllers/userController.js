@@ -31,17 +31,19 @@ const createUser = async (req, res) => {
     ...req.body,
     NFTs: [],
   })
-  try {
-    const registeredUser = await newUser.save();
-    res.status(200).json({
-      message: "successfully registered!",
-      newUser: registeredUser
-    })
-  }
-  catch (error) {
-    console.log(error);
-    res.status(500).json("something went wrong..")
-  }
+  const avatar = req.file;
+  console.log(req.body);
+  // try {
+  //   const registeredUser = await newUser.save();
+  //   res.status(200).json({
+  //     message: "successfully registered!",
+  //     newUser: registeredUser
+  //   })
+  // }
+  // catch (error) {
+  //   console.log(error);
+  //   res.status(500).json("something went wrong..")
+  // }
 
 }
 
