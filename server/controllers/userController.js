@@ -1,4 +1,5 @@
 import User from "../models/userModels.js";
+import { imageUpload } from "../utilities/imageManagement.js";
 
 const testingRoute = (req, res) => {
   res.send("testing route....");
@@ -27,23 +28,28 @@ const getUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
+  if (!req.body.email || !req.body.password || !req.body.username) {
+    return res.status(406).json({ error: "Please fill out all fields" });
+  }
+  const avatar = await imageUpload(req.file, "user_profile_pics");
+  console.log(avatar);
   const newUser = new User({
     ...req.body,
+    avatar: avatar,
     NFTs: [],
   })
-  const avatar = req.file;
-  console.log(req.body);
-  // try {
-  //   const registeredUser = await newUser.save();
-  //   res.status(200).json({
-  //     message: "successfully registered!",
-  //     newUser: registeredUser
-  //   })
-  // }
-  // catch (error) {
-  //   console.log(error);
-  //   res.status(500).json("something went wrong..")
-  // }
+
+  try {
+    const registeredUser = await newUser.save();
+    res.status(200).json({
+      message: "successfully registered!",
+      newUser: registeredUser
+    })
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).json("something went wrong..")
+  }
 
 }
 
