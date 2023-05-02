@@ -18,7 +18,7 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   const id = req.params;
   try {
-    const user = await UserModel.findById(id);
+    const user = await UserModel.findById(id).populate("nfts");
     res.status(200).json(user)
   } catch (error) {
     // console.log(error);
@@ -26,4 +26,38 @@ const getUser = async (req, res) => {
   }
 }
 
-export { testingRoute, getUsers, getUser}
+const createUser = async (req, res) => {
+  const newUser = new User({
+    ...req.body,
+    NFTs: [],
+  })
+  try {
+    const registeredUser = await newUser.save();
+    res.status(200).json({
+      message: "successfully registered!",
+      newUser: registeredUser
+    })
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).json("something went wrong..")
+  }
+
+}
+
+const updateUser = async (req, res) => {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
+      res.status(200).json(updatedUser);
+    } catch (e) {
+      console.log(e);
+      res.status(500).send(e.message);
+    }
+  };
+
+
+export { testingRoute, getUsers, getUser, createUser, updateUser}

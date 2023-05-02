@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Register from './pages/Register';
 
 interface User {
   email: string,
@@ -16,7 +18,7 @@ function App() {
 
   const getUsers =async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/user/all");
+      const response = await fetch("http://localhost:5002/api/user/all");
       const result = await response.json();
       setUsers(result);
       console.log(result);
@@ -30,12 +32,19 @@ function App() {
 }, [])
 
   return (
+    <>
     <div className="App">
       <h1>heya</h1>
       {users && users.map((user) => {
         return <p key = {user._id}>{user.username}</p>
       })}
-    </div>
+      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='register' element={<Register/> } />
+      </Routes>
+      </BrowserRouter>
+      </>
   );
 }
 
