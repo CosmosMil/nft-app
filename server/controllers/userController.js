@@ -1,6 +1,6 @@
 import User from "../models/userModels.js";
 import { imageUpload } from "../utilities/imageManagement.js";
-import { encryptPassword, verifyPassword } from "../libraries/bycript.js";
+import { encryptPassword, verifyPassword } from "../utilities/bycript.js";
 
 const testingRoute = (req, res) => {
   res.send("testing route....");

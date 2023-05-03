@@ -1,11 +1,10 @@
 import { ReactNode, createContext, useState } from "react"
 
 interface User {
-  password: string,
   email: string,
   username: string,
   avatar: string,
-  pets: string[]
+  NFTs: string[]
 }
 
 interface AuthContextType {
@@ -45,7 +44,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       body: urlencoded,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}users/login`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/login`, requestOptions);
+      console.log("this", response);
       const result = await response.json();
       if (result.user) {
         setUser(result.user);
@@ -58,6 +58,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     }
 
   }
+
 
   return (
     <AuthContext.Provider value={{ user, login, error }}>
