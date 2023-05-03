@@ -1,6 +1,6 @@
 import User from "../models/userModels.js";
 import { imageUpload } from "../utilities/imageManagement.js";
-import { encryptPassword } from "../libraries/bycript.js";
+import { encryptPassword, verifyPassword } from "../libraries/bycript.js";
 
 const testingRoute = (req, res) => {
   res.send("testing route....");
@@ -20,7 +20,7 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   const id = req.params;
   try {
-    const user = await UserModel.findById(id).populate("nfts");
+    const user = await User.findById(id).populate("nfts");
     res.status(200).json(user)
   } catch (error) {
     // console.log(error);
