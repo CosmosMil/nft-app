@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 type Props = {}
 
 interface User {
-  email: String,
-  username: String,
-  password: String
+  email: string,
+  username: string,
+  password: string
 }
 
 type Users = User[]
@@ -16,7 +16,7 @@ const Homepage = (props: Props) => {
 
   const getUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5002/api/user/all");
+      const response = await fetch("http://localhost:5001/api/user/all");
       const result = await response.json();
       setUsers(result);
       console.log("all users:", result)

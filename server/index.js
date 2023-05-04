@@ -8,7 +8,7 @@ import cors from "cors";
 import NFTRouter from "./routes/nftRoutes.js";
 
 const app = express();
-const port = process.env.PORT || 5002;
+const port = process.env.PORT || 5001;
 
 const setMiddlewares = () => {
   app.use(express.json());

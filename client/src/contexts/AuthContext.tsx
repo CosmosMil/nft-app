@@ -1,16 +1,17 @@
-import { ReactNode, createContext, useState } from "react"
+import { ReactNode, createContext, useState, useEffect } from "react"
 
 interface User {
-  email: string,
+  email?: string,
   username: string,
   avatar: string,
   NFTs: string[]
 }
 
 interface AuthContextType {
-  user: User | null,
+  user: boolean,
   error: Error | null,
   login(email: string, password: string): void,
+  logout(): void
 }
 
 // export const AuthContext = createContext<AuthContextType | null>(null); // not recommended
@@ -18,17 +19,20 @@ interface AuthContextType {
 // export const AuthContext = createContext<AuthContextType>(null!); // less recommended
 
 const initialAuth: AuthContextType = {
-  user: null,
+  user: false,
   error: null,
   login: () => {
     throw new Error('login not implemented.');
+  },
+  logout: () => {
+    throw new Error('logout not implemented.')
   }
 };
 
 export const AuthContext = createContext<AuthContextType>(initialAuth);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
   const login = async (email: string, password: string) => {
@@ -48,7 +52,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       console.log("this", response);
       const result = await response.json();
       if (result.user) {
-        setUser(result.user);
+        setUser(true);
+        localStorage.setItem("token", result.token);
       }
       console.log(result);
     } catch (error) {
@@ -59,9 +64,28 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   }
 
+  const logout = () => {
+    setUser(false);
+    localStorage.removeItem("token");
+  }
+
+  const checkForToken = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      console.log("There is a token")
+      setUser(true)
+    } else {
+      console.log("There is no token")
+      setUser(false)
+    }
+  }
+
+  useEffect(() => {
+    checkForToken();
+  }, [])
 
   return (
-    <AuthContext.Provider value={{ user, login, error }}>
+    <AuthContext.Provider value={{ user, login, logout, error }}>
       {children}
     </AuthContext.Provider>
   )
