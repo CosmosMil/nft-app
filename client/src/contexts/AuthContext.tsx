@@ -18,7 +18,7 @@ interface fetchFailed {
 }
 
 interface AuthContextType {
-  user: boolean,
+  user: User | null,
   error: Error | null,
   login(email: string, password: string): void,
   logout(): void
@@ -29,7 +29,7 @@ interface AuthContextType {
 // export const AuthContext = createContext<AuthContextType>(null!); // less recommended
 
 const initialAuth: AuthContextType = {
-  user: false,
+  user: null,
   error: null,
   login: () => {
     throw new Error('login not implemented.');
@@ -42,7 +42,7 @@ const initialAuth: AuthContextType = {
 export const AuthContext = createContext<AuthContextType>(initialAuth);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
   const login = async (email: string, password: string) => {
@@ -63,7 +63,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       if (response.ok) {
         const result = await response.json() as fetchResult
         if (result.user) {
-          setUser(true);
+          setUser(result.user);
           localStorage.setItem("token", result.token);
         }
         console.log(result);
@@ -81,7 +81,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const logout = () => {
-    setUser(false);
+    setUser(null);
     localStorage.removeItem("token");
   }
 
@@ -89,11 +89,30 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const token = localStorage.getItem("token");
     if (token) {
       console.log("There is a token")
-      setUser(true)
+      fetchActiveUser(token);
     } else {
       console.log("There is no token")
-      setUser(false)
+      setUser(null)
     }
+  }
+
+  const fetchActiveUser = async (token: string) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+    const requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+    };
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/active`, requestOptions)
+      const result = await response.json();
+      console.log("active user result:", result);
+      setUser(result);
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   useEffect(() => {

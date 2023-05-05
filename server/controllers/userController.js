@@ -57,9 +57,10 @@ const createUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
+  const me = req.user;
     try {
       const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
+        me._id,
         req.body,
         { new: true }
       );
@@ -105,5 +106,16 @@ const login = async (req, res) => {
   }
 };
 
+const getActiveUser = async (req, res) => {
+  
+  res.status(200).json({
+    _id: req.user._id,
+    email: req.user.email,
+    username: req.user.username,
+    avatar: req.user.avatar,
+    NFTs: req.user.NFTs
+})
+}
 
-export { testingRoute, getUsers, getUser, createUser, updateUser, login}
+
+export { testingRoute, getUsers, getUser, createUser, updateUser, login, getActiveUser}
