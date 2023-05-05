@@ -6,6 +6,7 @@ import cloudinaryConfig from "./config/cloudinary.js";
 import userRouter from "./routes/userRoutes.js";
 import cors from "cors";
 import NFTRouter from "./routes/nftRoutes.js";
+import passportConfig from "./config/passport.js";
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -19,6 +20,7 @@ const setMiddlewares = () => {
   );
   app.use(cors());
   cloudinaryConfig();
+  passportConfig();
 };
 
 
@@ -39,6 +41,7 @@ const connectMongoose = () => {
 const connectRoutes = () => {
   app.use("/api/user", userRouter);
   app.use("/api/NFTs", NFTRouter);
+  app.use("*", (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 };
 
 setMiddlewares();

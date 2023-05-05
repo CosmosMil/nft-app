@@ -7,6 +7,16 @@ interface User {
   NFTs: string[]
 }
 
+interface fetchResult {
+  token: string,
+  verified: boolean,
+  user: User
+}
+
+interface fetchFailed {
+  error: string
+}
+
 interface AuthContextType {
   user: boolean,
   error: Error | null,
@@ -50,12 +60,18 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/login`, requestOptions);
       console.log("this", response);
-      const result = await response.json();
-      if (result.user) {
-        setUser(true);
-        localStorage.setItem("token", result.token);
+      if (response.ok) {
+        const result = await response.json() as fetchResult
+        if (result.user) {
+          setUser(true);
+          localStorage.setItem("token", result.token);
+        }
+        console.log(result);
+      } else {
+        const result = await response.json() as fetchFailed
+        alert(result.error)
       }
-      console.log(result);
+
     } catch (error) {
       console.log(error);
       // setError(error); //I still have to figure out how to type the unknown fetch results
