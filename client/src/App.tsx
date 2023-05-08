@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Homepage from './pages/Homepage';
 import { AuthContext, AuthContextProvider } from './contexts/AuthContext';
-import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 
 
 function App() {
@@ -37,7 +36,7 @@ function App() {
       </div> */}
       <AuthContextProvider>
         <BrowserRouter>
-          <Navbar />
+          <Sidebar />
           <Routes>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
