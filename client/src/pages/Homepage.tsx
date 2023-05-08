@@ -11,41 +11,41 @@ interface User {
 type Users = User[]
 
 const Homepage = (props: Props) => {
-  const [users, setUsers] = useState<Users>([]);
-  const [user, setUser] = useState<User | null>(null);
+  // const [users, setUsers] = useState<Users>([]);
+  // const [user, setUser] = useState<User | null>(null);
 
-  const getUsers = async () => {
-    try {
-      const response = await fetch("http://localhost:5001/api/user/all");
-      const result = await response.json();
-      setUsers(result);
-      console.log("all users:", result)
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // const getUsers = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:5001/api/user/all");
+  //     const result = await response.json();
+  //     setUsers(result);
+  //     console.log("all users:", result)
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
-  const getUserById = async () => {
-    const id = "6447a2bc1362e69f068f823b";
-    try {
-      const response = await fetch(`http://localhost:5000/api/users/id/${id}`);
-      const result = await response.json();
-      console.log("single user:", result);
-      setUser(result);
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const getUserById = async () => {
+  //   const id = "6447a2bc1362e69f068f823b";
+  //   try {
+  //     const response = await fetch(`http://localhost:5000/api/users/id/${id}`);
+  //     const result = await response.json();
+  //     console.log("single user:", result);
+  //     setUser(result);
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
-  useEffect(() => {
-    getUsers();
-    getUserById();
-  }, [])
+  // useEffect(() => {
+  //   // getUsers();
+  //   getUserById();
+  // }, [])
 
   return (
     <>
-      <div className="p-4 sm:ml-64 dark:border-gray-700 bg-slate-500 h-screen">
-        <div className="p-4 ">
+      <div className="p-4 sm:ml-60">
+        <div>
           <div className="grid grid-cols-3 mb-4 gap-4">
             <div className="flex items-center justify-center">
               <img src="images/cryptopunk.jpg" />
