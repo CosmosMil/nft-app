@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Sidebar from '../components/Sidebar'
+
 
 type Props = {}
 
@@ -11,6 +13,14 @@ interface User {
 type Users = User[]
 
 const Homepage = (props: Props) => {
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
+
   // const [users, setUsers] = useState<Users>([]);
   // const [user, setUser] = useState<User | null>(null);
 
@@ -44,7 +54,13 @@ const Homepage = (props: Props) => {
 
   return (
     <>
-      <div className="p-4 sm:ml-60">
+      <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+      <div className="p-4 sm:ml-60"
+        onClick={() => {
+          if (showSidebar) {
+            toggleSidebar();
+          }
+        }}>
         <div>
           <div className="grid grid-cols-3 mb-4 gap-4">
             <div className="flex items-center justify-center">
