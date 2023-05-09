@@ -3,14 +3,22 @@ import { AuthContext } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom';
 
 type Props = {
-  showSidebar: boolean;
-  toggleSidebar: () => void;
+  // showSidebar: boolean;
+  // toggleSidebar: () => void;
 }
 
-const Sidebar = ({ showSidebar, toggleSidebar }: Props) => {
+const Sidebar = (props: Props) => {
   const { user } = useContext(AuthContext);
 
+  const [showSidebar, setShowSidebar] = useState(false);
 
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
+  window.onclick = () => {
+    setShowSidebar(false)
+  }
   // const toggleButton = () => {
   //   console.log("button clicked");
   //   if (showSidebar === false) {
@@ -26,7 +34,7 @@ const Sidebar = ({ showSidebar, toggleSidebar }: Props) => {
   // const ddd = ${ showSidebar ?"translate-x-0": "-translate-x-full"} sm: translate-x - 0`} aria-label="Sidebar"
 
   return (
-    <div>
+    <div onClick={(e) => e.stopPropagation()} className=''>
       <button onClick={toggleSidebar}
         className="flex items-center justify-center w-10 h-10 p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <i className=" fa-solid fa-bars" style={{ color: "#fefc78", }}></i>

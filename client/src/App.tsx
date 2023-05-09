@@ -36,7 +36,7 @@ function App() {
       </div> */}
       <AuthContextProvider>
         <BrowserRouter>
-          {/* <Sidebar /> */}
+          <Sidebar />
           <Routes>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />

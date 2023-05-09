@@ -14,11 +14,11 @@ type Users = User[]
 
 const Homepage = (props: Props) => {
 
-  const [showSidebar, setShowSidebar] = useState(false);
+  // const [showSidebar, setShowSidebar] = useState(false);
 
-  const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
-  };
+  // const toggleSidebar = () => {
+  //   setShowSidebar(!showSidebar);
+  // };
 
 
   // const [users, setUsers] = useState<Users>([]);
@@ -54,13 +54,14 @@ const Homepage = (props: Props) => {
 
   return (
     <>
-      <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+      {/* <Sidebar /> */}
       <div className="p-4 sm:ml-60"
-        onClick={() => {
-          if (showSidebar) {
-            toggleSidebar();
-          }
-        }}>
+      // onClick={() => {
+      //   if (showSidebar) {
+      //     toggleSidebar();
+      //   }
+      // }}
+      >
         <div>
           <div className="grid grid-cols-3 mb-4 gap-4">
             <div className="flex items-center justify-center">
