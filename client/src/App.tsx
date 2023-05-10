@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Homepage from './pages/Homepage';
 import { AuthContext, AuthContextProvider } from './contexts/AuthContext';
 import Sidebar from './components/Sidebar';
+import Collection from './pages/Collection';
 
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
             <Route path='home' element={<Homepage />} />
-          </Routes>
+            <Route path='home/collection' element={<Collection />}
+            />          </Routes>
         </BrowserRouter>
       </AuthContextProvider>
     </>

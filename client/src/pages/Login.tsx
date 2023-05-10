@@ -18,12 +18,12 @@ function Login({ }: Props) {
   }
   return (
 
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    < div className="p-4 sm:ml-60">
+      <h1 className='text-center text-2xl p-8'>Login</h1>
+      <form className="flex items-center justify-center" onSubmit={handleSubmit}>
         <input type='email' name='email' placeholder='email' onChange={handleChange} />
         <input type='password' name='password' placeholder='password' onChange={handleChange} />
-        <button type='submit'>Login!</button>
+        <button className='border-2 m-4' type='submit'>submit</button>
       </form>
     </div>
   )
