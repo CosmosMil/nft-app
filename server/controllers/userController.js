@@ -94,7 +94,7 @@ const login = async (req, res) => {
           user: {
             _id: existingUser._id,
             username: existingUser.username,
-            pets: existingUser.pets,
+            NFTs: existingUser.NFTs,
             avatar: existingUser.avatar,
           },
         });

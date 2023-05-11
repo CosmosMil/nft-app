@@ -41,8 +41,8 @@ function App() {
           <Routes>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
-            <Route path='home' element={<Homepage />} />
-            <Route path='home/collection' element={<Collection />}
+            <Route path='/' element={<Homepage />} />
+            <Route path='collection' element={<Collection />}
             />          </Routes>
         </BrowserRouter>
       </AuthContextProvider>

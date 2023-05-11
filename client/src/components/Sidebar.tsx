@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Sidebar = (props: Props) => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -49,10 +49,10 @@ const Sidebar = (props: Props) => {
           <ul className="space-y-2 font-medium">
             <li>
               {!user ?
-                (<NavLink to="/home" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                (<NavLink to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                   <i className=" fa-solid fa-ghost"></i>
                   <span className="flex-1 ml-3 whitespace-nowrap">Home</span>
-                </NavLink>) : (<NavLink to="/home/collection" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                </NavLink>) : (<NavLink to="/collection" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                   <i className=" fa-solid fa-ghost"></i>
                   <span className="flex-1 ml-3 whitespace-nowrap">Home</span></NavLink>)}
             </li>
@@ -74,6 +74,21 @@ const Sidebar = (props: Props) => {
                 <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
               </NavLink>
             </li>
+
+            {user && (
+              <button
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+
+                onClick={async () => {
+                  try {
+                    await logout()
+                    console.log("sign out successful");
+                  } catch (error) { console.log(error) };
+                }}
+              >
+                log out
+              </button>)}
+
           </ul>
         </div>
       </aside >

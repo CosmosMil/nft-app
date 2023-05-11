@@ -40,7 +40,7 @@ const connectMongoose = () => {
 
 const connectRoutes = () => {
   app.use("/api/user", userRouter);
-  app.use("/api/NFTs", NFTRouter);
+  app.use("/api/nfts", NFTRouter);
   app.use("*", (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 };
 
