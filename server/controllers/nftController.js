@@ -1,6 +1,8 @@
-import { isDeferredData } from "@remix-run/router";
 import NFTModel from "../models/nftModel.js";
 import { v2 as cloudinary } from "cloudinary";
+import Collection from "../models/collectionModel.js";
+import mongoose from "mongoose";
+import { Types as mongooseTypes } from 'mongoose';
 
 const getAllNFTs = async (req, res) => {
   try {
@@ -14,20 +16,42 @@ const getAllNFTs = async (req, res) => {
 
 }
 
+
 const createCollection = async (req, res) => {
-  let ids = [];
+  const ids = [];
+
   try {
-  const uploadNFTs = req.files.map(async(file) => {
+       console.log("req.body.owner:", req.body.owner);
+    const uploadNFTs = req.files.map(async (file) => {
   const uploadResult = await cloudinary.uploader.upload(file.path, { folder: "nft-collections" });
   console.log("result.public_id", uploadResult.public_id);
   ids.push(uploadResult.public_id);
-  return uploadResult.url;
-});
-let urls = await Promise.all(uploadNFTs);
-let publicIds = ids;
+    return {
+      url: uploadResult.url,
+      publicId: uploadResult.public_id
+    };
+    });
+    console.log("uploadNFTs:", uploadNFTs); 
+    const uploadedNFTs = await Promise.all(uploadNFTs);
+
+    console.log("uploadedNFTs:", uploadedNFTs);
+
+    const publicIds = uploadedNFTs.map((nft) =>(nft.publicId) );
+
+    console.log("publicIds:", publicIds);
+
+     const newCollection = new Collection({
+       owner: req.body.owner,
+       NFTs: publicIds,
+     });
+    console.log("newCollection:", newCollection); 
+
+    const savedCollection = await newCollection.save();
+    const collectionId = savedCollection._id;
+
 res.status(200).json({
-      urls,
-      publicIds,
+      collectionId: collectionId,
+      uploadedNFTs: uploadedNFTs
     });
   } catch (error) {
     console.error(error);
