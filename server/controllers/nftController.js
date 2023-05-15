@@ -1,8 +1,5 @@
 import NFTModel from "../models/nftModel.js";
 import { v2 as cloudinary } from "cloudinary";
-import Collection from "../models/collectionModel.js";
-import mongoose from "mongoose";
-import { Types as mongooseTypes } from "mongoose";
 
 const getAllNFTs = async (req, res) => {
   try {
@@ -16,8 +13,7 @@ const getAllNFTs = async (req, res) => {
 
 const createCollection = async (req, res) => {
   const ids = [];
-  // const savedArray = [];
-
+console.log(req.files)
   try {
     // console.log("req.body.owner:", req.body.owner);
     const uploadNFTs = req.files.map(async (file) => {
@@ -36,10 +32,6 @@ const createCollection = async (req, res) => {
 
     // console.log("uploadedNFTs:", uploadedNFTs);
 
-    const publicIds = uploadedNFTs.map((nft) => nft.publicId);
-
-    // console.log("publicIds:", publicIds);
-
     const savedToMongo = uploadedNFTs.map(async (NFT) => {
       const NFTdoc = new NFTModel({
         owner: req.body.owner,
@@ -56,19 +48,6 @@ const createCollection = async (req, res) => {
       msg: "successfully uploaded",
       NFTarray: savedArray
 })
-    // const newCollection = new Collection({
-    //   owner: req.body.owner,
-    //   NFTs: publicIds,
-    // });
-    // console.log("newCollection:", newCollection);
-
-    // const savedCollection = await newCollection.save();
-    // const collectionId = savedCollection._id;
-
-    // res.status(200).json({
-    //   collectionId: collectionId,
-    //   uploadedNFTs: uploadedNFTs,
-    // });
   } catch (error) {
     console.error(error);
     res.status(500).json({

@@ -49,45 +49,44 @@ const Sidebar = (props: Props) => {
           <ul className="space-y-2 font-medium">
             <li>
               {!user ?
-                (<NavLink to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                (<NavLink to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                   <i className=" fa-solid fa-ghost"></i>
                   <span className="flex-1 ml-3 whitespace-nowrap">Home</span>
-                </NavLink>) : (<NavLink to="/collection" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                </NavLink>) : (<NavLink to="/collection" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                   <i className=" fa-solid fa-ghost"></i>
                   <span className="flex-1 ml-3 whitespace-nowrap">Home</span></NavLink>)}
             </li>
             <li>
-              <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                 <i className="fa-sharp fa-solid fa-cubes"> </i>
                 <span className="flex-1 ml-3 whitespace-nowrap">NFTs</span>
               </a>
             </li>
             <li>
-              <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                 <i className="fa-solid fa-hippo"></i>
                 <span className="flex-1 ml-3 whitespace-nowrap">Log In</span> </NavLink>
 
             </li>
             <li>
-              <NavLink to="/register" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <NavLink to="/register" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                 <i className="fa-solid fa-rocket"></i>
                 <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
               </NavLink>
             </li>
+            <div className='p-20'></div>
 
             {user && (
-              <button
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-
-                onClick={async () => {
+              <div className="flex justify-end items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700 space-x-2">
+                <i className="fa-solid fa-backward"></i>
+                <button onClick={async () => {
                   try {
-                    await logout()
+                    logout()
                     console.log("sign out successful");
                   } catch (error) { console.log(error) };
                 }}
-              >
-                log out
-              </button>)}
+                >Log Out
+                </button> </div>)}
 
           </ul>
         </div>

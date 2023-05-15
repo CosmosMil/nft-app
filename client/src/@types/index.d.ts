@@ -11,3 +11,21 @@ interface SubmitLoginData {
   email: string,
   password: string,
 }
+
+interface User {
+  email?: string,
+  username: string,
+  avatar: string,
+  NFTs: string[],
+  _id: string
+}
+
+interface fetchResult {
+  token: string,
+  verified: boolean,
+  user: User
+}
+
+interface fetchFailed {
+  error: string
+}

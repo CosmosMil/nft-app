@@ -1,21 +1,6 @@
 import { ReactNode, createContext, useState, useEffect } from "react"
 
-interface User {
-  email?: string,
-  username: string,
-  avatar: string,
-  NFTs: string[]
-}
 
-interface fetchResult {
-  token: string,
-  verified: boolean,
-  user: User
-}
-
-interface fetchFailed {
-  error: string
-}
 
 interface AuthContextType {
   user: User | null,
