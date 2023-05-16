@@ -29,3 +29,9 @@ interface fetchResult {
 interface fetchFailed {
   error: string
 }
+
+interface NFT {
+  _id: string,
+  preview: string,
+  owner: string
+}

@@ -84,7 +84,7 @@ const Homepage = (props: Props) => {
               <i className="fa-solid fa-slash fa-spin-pulse"></i>
               <i className="fa-solid fa-slash fa-spin-pulse"></i>
             </span>
-            <h1 className="text-7xl text-indigo-500 border-dotted animate-pulse font-serif">NFT SWAP</h1>
+            <h1 className="text-7xl text-indigo-400 border-dotted animate-pulse font-serif">NFT SWAP</h1>
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-4">

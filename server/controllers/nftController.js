@@ -11,6 +11,18 @@ const getAllNFTs = async (req, res) => {
   }
 };
 
+const getAllNFTsFromUser = async (req, res) => {
+  console.log(req.params)
+  try {
+    const userId = req.params.id;
+    const NFTs = await NFTModel.find({owner: userId})
+    res.status(200).json(NFTs);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Something went wrong..." });
+  }
+}
+
 const createCollection = async (req, res) => {
   const ids = [];
 console.log(req.files)
@@ -68,4 +80,4 @@ const testNew = async (req, res) => {
     console.log(error);
   }
 };
-export { getAllNFTs, testNew, createCollection };
+export { getAllNFTs, testNew, createCollection, getAllNFTsFromUser };

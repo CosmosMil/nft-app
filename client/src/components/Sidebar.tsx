@@ -57,10 +57,10 @@ const Sidebar = (props: Props) => {
                   <span className="flex-1 ml-3 whitespace-nowrap">Home</span></NavLink>)}
             </li>
             <li>
-              <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
+              <NavLink to="/upload" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                 <i className="fa-sharp fa-solid fa-cubes"> </i>
-                <span className="flex-1 ml-3 whitespace-nowrap">NFTs</span>
-              </a>
+                <span className="flex-1 ml-3 whitespace-nowrap">Upload NFTs</span>
+              </NavLink>
             </li>
             <li>
               <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
