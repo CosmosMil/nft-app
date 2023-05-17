@@ -65,7 +65,7 @@ const Sidebar = (props: Props) => {
             <li>
               {user ? (
                 <div>
-                  <div className='text-center p-7 font-serif'>
+                  <div className='text-left p-7 font-serif border-2 border-dotted border-slate-400'>
                     <i className="fa-regular fa-hand"></i>
                     {' Welcome back ' + user.username + '!'}
 

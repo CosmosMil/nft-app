@@ -37,7 +37,7 @@ const Collection = () => {
       <h1 className="text-5xl text-center text-indigo-400 font-serif p-5">MY COLLECTION</h1>
       <div className='flex flex-wrap justify-center space-x-2 space-y-2 p-5 border-2 border-dotted border-indigo-400'>
         {data ? data.map((item, index) => (
-          <div key={index} className='w-52 h-52'>
+          <div key={index} className='w-52 h-52 p-3'>
             <img src={item.preview} alt="NFT" className='object-scale-down w-52 h-52 ' />
           </div>
         )) : <div><i className="fa-regular fa-spinner fa-spin"></i>

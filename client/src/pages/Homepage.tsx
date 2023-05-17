@@ -68,7 +68,7 @@ const Homepage = (props: Props) => {
               <img src="images/cryptopunk.jpg" />
             </div>
             <div className='grid items-center justify-center p-4 '>
-              <span className='text-yellow-100'>SIGN UP <br />TO SWAP<br />NFTS</span>
+              <span className='text-yellow-100'>LOG IN / <br />SIGN UP <br />TO SWAP<br />NFTS</span>
               <span>
                 <i className="fa-solid fa-slash fa-spin-pulse" style={{ color: "#fefc78", }}></i>
                 <i className="fa-solid fa-slash fa-spin-pulse" style={{ color: "#fefc78", }}></i>
