@@ -1,10 +1,13 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 
 type Props = {}
 
 function Login({ }: Props) {
+
   const { login } = useContext(AuthContext);
+  let navigate = useNavigate();
   const [formData, setFormData] = useState<SubmitLoginData>({
     email: "",
     password: "",
@@ -15,6 +18,8 @@ function Login({ }: Props) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(formData.email, formData.password);
+
+    navigate('/collection')
   }
   return (
 

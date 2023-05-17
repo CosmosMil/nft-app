@@ -1,11 +1,13 @@
 import React, { useState, ChangeEvent, FormEvent, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {}
 
 const Upload = (props: Props) => {
 
   const { user } = useContext(AuthContext);
+  let navigate = useNavigate();
 
   const [files, setFiles] = useState<File[]>([]);
 
@@ -38,6 +40,7 @@ const Upload = (props: Props) => {
         console.log('error', error);
       }
     }
+    navigate('/collection')
   }
 
 

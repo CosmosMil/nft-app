@@ -63,30 +63,38 @@ const Sidebar = (props: Props) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
-                <i className="fa-solid fa-hippo"></i>
-                <span className="flex-1 ml-3 whitespace-nowrap">Log In</span> </NavLink>
+              {user ? (
+                <div>
+                  <div className='text-center p-7 font-serif'>
+                    <i className="fa-regular fa-hand"></i>
+                    {' Welcome back ' + user.username + '!'}
 
-            </li>
-            <li>
-              <NavLink to="/register" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
-                <i className="fa-solid fa-rocket"></i>
-                <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
-              </NavLink>
+                  </div>
+
+                  <div className="flex justify-end items-center p-3 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700 space-x-2">
+                    <i className="fa-solid fa-backward"></i>
+                    <button onClick={async () => {
+                      try {
+                        logout()
+                        console.log("sign out successful");
+                      } catch (error) { console.log(error) };
+                    }}
+                    >Log Out
+                    </button> </div> </div>) :
+                (<div>
+                  <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
+                    <i className="fa-solid fa-hippo"></i>
+                    <span className="flex-1 ml-3 whitespace-nowrap">Log In</span> </NavLink>
+
+
+                  <NavLink to="/register" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
+                    <i className="fa-solid fa-rocket"></i>
+                    <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
+                  </NavLink></div>)}
             </li>
             <div className='p-20'></div>
 
-            {user && (
-              <div className="flex justify-end items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700 space-x-2">
-                <i className="fa-solid fa-backward"></i>
-                <button onClick={async () => {
-                  try {
-                    logout()
-                    console.log("sign out successful");
-                  } catch (error) { console.log(error) };
-                }}
-                >Log Out
-                </button> </div>)}
+
 
           </ul>
         </div>
