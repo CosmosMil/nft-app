@@ -60,22 +60,22 @@ const Upload = (props: Props) => {
   // )
 
   return (
-    <div className="p-4 sm:ml-60">
+    <div className="p-4 sm:ml-64">
       <h1 className="text-5xl text-center text-indigo-400 font-serif p-5">UPLOAD NFTS</h1>
 
       <div className="flex justify-center w-full mx-auto sm:max-w-lg">
 
-        <div className="flex flex-col items-center justify-center my-20 bg-indigo-500 sm:w-3/4 rounded-lg">
-          <div className="mt-10 mb-10 text-center">
+        <div className="flex flex-col items-center justify-center my-20 bg-indigo-500 rounded-lg w-72 h-72">
+          <div className="mb-10 text-center">
             <h2 className="text-2xl text-slate-600">.jpg .jpeg .png .mp3</h2>
             <p className="text-xs text-gray-900"></p>
           </div>
           <div className='text-center'>
             <form onSubmit={handleSubmit} className="">
-              <input className='bg-slate-500 text-xs' type="file" id="file-upload"
+              <input className='w-52 bg-slate-500 text-xs' type="file" id="file-upload"
                 multiple onChange={handleFileChange} />
               <div className='p-2'>
-                <button type="submit" className='p-1 rounded text-gray-900 ml-40 hover:bg-slate-500'>Submit</button></div>
+                <button type="submit" className='p-1 rounded text-yellow-100 ml-40 hover:bg-slate-500'>Submit</button></div>
             </form>
           </div>
 

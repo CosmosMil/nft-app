@@ -18,14 +18,23 @@ function Login({ }: Props) {
   }
   return (
 
-    < div className="p-4 sm:ml-60">
-      <h1 className='text-center text-2xl p-8'>Login</h1>
-      <form className="flex items-center justify-center" onSubmit={handleSubmit}>
-        <input type='email' name='email' placeholder='email' onChange={handleChange} />
-        <input type='password' name='password' placeholder='password' onChange={handleChange} />
-        <button className='border-2 m-4' type='submit'>submit</button>
-      </form>
+    <div className="p-4 sm:ml-64">
+      <h1 className="text-5xl text-center text-indigo-400 font-serif p-5">LOG IN</h1>
+
+      <div className="flex justify-center w-full mx-auto sm:max-w-lg">
+
+        <div className="flex flex-col items-center justify-center my-20 bg-indigo-500  rounded-lg p-10 w-72 h-72">
+
+          <form className='text-center space-y-3' onSubmit={handleSubmit}>
+            <input className='' type='email' name='email' placeholder='email' onChange={handleChange} />
+            <input type='password' name='password' placeholder='password' onChange={handleChange} />
+            <div className='p-2'>
+              <button type="submit" className='p-1 rounded text-yellow-100 ml-40 hover:bg-slate-500'>Submit</button></div>
+          </form>
+        </div>
+      </div>
     </div>
+
   )
 }
 

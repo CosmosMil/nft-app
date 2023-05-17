@@ -40,7 +40,8 @@ const Collection = () => {
           <div key={index} className='w-52 h-52'>
             <img src={item.preview} alt="NFT" className='object-scale-down w-52 h-52 ' />
           </div>
-        )) : <p>loading...</p>}
+        )) : <div><i className="fa-regular fa-spinner fa-spin"></i>
+        </div>}
         <div>
         </div>
 

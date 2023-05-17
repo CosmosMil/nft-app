@@ -48,16 +48,25 @@ const Register = (props: Props) => {
   }
 
   return (
-    <div className="p-4 sm:ml-60">
-      <h1 className='text-center text-2xl p-8'>Register</h1>
-      <form className="flex items-center justify-center" onSubmit={handleSubmit}>
-        <input type='email' name='email' placeholder='email' onChange={handleChange} />
-        <input type='password' name='password' placeholder='password' onChange={handleChange} />
-        <input name='username' placeholder='username' onChange={handleChange} />
-        <input type='file' name='avatar' onChange={handleFile} />
-        <button className='border-2 m-4' type='submit'>Register me!</button>
-      </form>
+    <div className="p-4 sm:ml-64">
+      <h1 className="text-5xl text-center text-indigo-400 font-serif p-5">SIGN UP</h1>
+
+      <div className="flex justify-center w-full mx-auto sm:max-w-lg">
+
+        <div className="flex flex-col  justify-center my-20 bg-indigo-500 rounded-lg w-72 h-72">
+
+          <form className="text-center space-y-3" onSubmit={handleSubmit}>
+            <input type='email' name='email' placeholder='email' onChange={handleChange} />
+            <input type='password' name='password' placeholder='password' onChange={handleChange} />
+            <input className='h-10 w-50 m-3 p-3' name='username' placeholder='username' onChange={handleChange} />
+            <input className='w-52 bg-slate-500 text-xs' type='file' name='avatar' onChange={handleFile} />
+            <div className='p-2'>
+              <button type="submit" className='p-1 rounded text-yellow-100 ml-40 hover:bg-slate-500'>Register me!</button></div>
+          </form>
+        </div>
+      </div>
     </div>
+
   )
 }
 
