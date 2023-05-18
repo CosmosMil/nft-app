@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
 type Props = {
@@ -10,6 +10,7 @@ type Props = {
 
 const Sidebar = (props: Props) => {
   const { user, logout } = useContext(AuthContext);
+  let navigate = useNavigate();
 
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -33,6 +34,7 @@ const Sidebar = (props: Props) => {
   // console.log("testing")
 
   // const ddd = ${ showSidebar ?"translate-x-0": "-translate-x-full"} sm: translate-x - 0`} aria-label="Sidebar"
+
 
   return (
     <div onClick={(e) => e.stopPropagation()} className=''>
@@ -77,6 +79,7 @@ const Sidebar = (props: Props) => {
                       try {
                         logout()
                         console.log("sign out successful");
+                        navigate('/');
                       } catch (error) { console.log(error) };
                     }}
                     >Log Out

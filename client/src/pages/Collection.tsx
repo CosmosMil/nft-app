@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import Modal from '../components/Modal';
+import { NOTFOUND } from 'dns';
+import { isTemplateSpan } from 'typescript';
 
 
 const Collection = () => {
@@ -40,16 +42,26 @@ const Collection = () => {
   return (
     <div className="p-4 sm:ml-64">
       <h1 className="text-5xl text-center text-indigo-400 font-serif p-5">MY COLLECTION</h1>
-      <div className='flex flex-wrap justify-center space-x-2 space-y-2 p-5 border-2 border-dotted border-indigo-400'>
-        {data ? data.map((item, index) => (
-          <div key={index} className='w-52 h-52 p-3'>
-            <img src={item.preview} alt="NFT" className='object-scale-down w-52 h-52' onClick={() => openModal(item)} />
-          </div>
-        )) : <div><i className="fa-regular fa-spinner fa-spin"></i>
-        </div>}
+      <div className='p-5 border-2 border-dotted border-indigo-400'>
+        <div className='text-center text-indigo-400'><p className='p-3'>
+          <i className="fa-solid fa-hand-point-down"></i> click on NFT to add / update info</p></div>
+        <div className='flex flex-wrap items-start justify-center'>
+
+          {data ? data.map((item) => (
+            <div className=''>
+              <div key={item._id} className='h-80 w-54 p-3 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2'>
+                <img src={item.preview} alt="NFT" className='object-scale-down w-52 h-52' onClick={() => openModal(item)} />
+                <div className='text-center text-yellow-100 p-2'>
+                  {item.name} <br /> {item.price} <br /> {item.mintdate}
+                </div>
+              </div>
+            </div>
+          )) : <div><i className="fa-regular fa-spinner fa-spin"></i>
+          </div>}
+        </div>
       </div>
-      /:Render the modal component and pass in the selected NFT/
-      {selectedNFT && <Modal _id={selectedNFT._id} name={selectedNFT.name || ''} price={selectedNFT.price || ''} visible={modalVisible} setVisible={setModalVisible} />}
+
+      {selectedNFT && <Modal _id={selectedNFT._id} name={selectedNFT.name || ''} price={selectedNFT.price || ''} mintdate={selectedNFT.mintdate || ''} preview={selectedNFT.preview} visible={modalVisible} setVisible={setModalVisible} />}
     </div>
   )
 }

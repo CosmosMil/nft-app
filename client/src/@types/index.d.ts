@@ -35,5 +35,6 @@ interface NFT {
   preview: string,
   owner: string,
   name?: string,
-  price?: string
+  price?: string,
+  mintdate?: string
 }
