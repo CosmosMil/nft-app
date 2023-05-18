@@ -70,7 +70,7 @@ console.log(req.files)
 };
 
 const addNFTInfo = async (req, res) => {
-  console.log('req body',req.body);
+  
   const { _id } = req.body
   
   
@@ -83,7 +83,18 @@ const addNFTInfo = async (req, res) => {
     // console.log(error);
     res.status(500).json({error: "something went wrong"})
   }
+}
+  
+const getNFTInfo = async (req, res) => {
+  try {
+    const NFTid = req.body._id;
+    const NFT = await NFTModel.findById(NFTid);
+    res.status(200).json(NFT);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Something went wrong..." });
   }
+};
 
 
 const testNew = async (req, res) => {
@@ -97,4 +108,4 @@ const testNew = async (req, res) => {
     console.log(error);
   }
 };
-export { getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo };
+export { getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo };

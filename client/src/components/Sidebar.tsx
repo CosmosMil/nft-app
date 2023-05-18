@@ -44,7 +44,7 @@ const Sidebar = (props: Props) => {
 
       <aside id="default-sidebar" className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${showSidebar ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0`} aria-label="Sidebar">
 
-        <div className="h-full px-3 py-4 overflow-y-auto bg-indigo-500">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-indigo-500 opacity-95">
 
           <ul className="space-y-2 font-medium">
             <li>

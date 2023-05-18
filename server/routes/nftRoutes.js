@@ -1,5 +1,5 @@
 import express from "express";
-import {getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo} from "../controllers/nftController.js"
+import {getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo} from "../controllers/nftController.js"
 import { multerUpload } from "../middlewares/multer.js";
 
 const NFTRouter = express.Router();
@@ -10,7 +10,8 @@ NFTRouter.get("/all/:id", getAllNFTsFromUser);
 NFTRouter.post("/test", testNew);
 
 //update info about NFT
-NFTRouter.post("/update/", addNFTInfo);
+NFTRouter.post("/update", addNFTInfo);
+NFTRouter.get("/info", getNFTInfo)
 
 //upload collection
 NFTRouter.post("/collection", multerUpload.array("files", 6), createCollection);
