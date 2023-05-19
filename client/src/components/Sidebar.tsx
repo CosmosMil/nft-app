@@ -52,7 +52,7 @@ const Sidebar = (props: Props) => {
 
         <div className="h-full px-3 py-4 overflow-y-auto bg-indigo-500 opacity-95">
           {showSidebar ? (
-            <div className="absolute top-0 right-0 -mr-12 pt-2 sm:hidden"><button onClick={closeSidebar} type="button" className="ml-1 flex items-center justify-center h-8 w-8 rounded-full hover:bg-gray-400 focus:ring-inset "><span className="sr-only">Close sidebar</span><i className="fa-solid fa-xmark" style={{ color: "#fefc78" }} ></i></button></div>) : (null)}
+            <div className="absolute top-0 right-0 -mr-10 pt-2 sm:hidden"><button onClick={closeSidebar} type="button" className="ml-1 flex items-center justify-center h-8 w-8 rounded-full hover:bg-gray-400 focus:ring-inset "><span className="sr-only">Close sidebar</span><i className="fa-solid fa-xmark" style={{ color: "#fefc78" }} ></i></button></div>) : (null)}
 
           <ul className="space-y-2 font-medium">
             <li>

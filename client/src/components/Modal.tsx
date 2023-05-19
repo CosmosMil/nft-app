@@ -46,26 +46,32 @@ const Modal = (props: Props) => {
 
   return (
 
-    <div className="flex justify-center items-center">
+    <div className="">
       {
         props.visible ? (
 
-          <div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center' onClick={closeModal}>
-            <div className='p-4 sm:ml-64 bg-indigo-500 w-1/2 h-1/2 sm:w-1/3'>
-              <div className='flex flex-col justify-center items-center'>
+          <div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center' >
+            <div className='flex items-start'><div className='p-4 sm:ml-64 bg-indigo-500 flex flex-col justify-center items-center'>
 
-                <img className='object-scale-down w-52 h-52' src={props.preview} alt='NFT' />
-                <form className=' flex flex-col p-3 w-3/4'>
-                  <input className='' type='text' name='name' placeholder='name' />
-                  <input className='' type='text' name='price' placeholder='price' />
-                  <input className='' type='text' name='mint date' placeholder='mint date' />
-                </form>
+              <img className='object-scale-down w-52 h-52' src={props.preview} alt='NFT' />
+              <form className=' flex flex-col p-3 w-3/4'>
+                <input className='' type='text' name='name' placeholder='name' />
+                <input className='' type='text' name='price' placeholder='price' />
+                <input className='' type='text' name='mint date' placeholder='mint date' />
+              </form>
 
-              </div>
             </div>
-          </div>) : (null)
+              <button onClick={closeModal} type="button" className="ml-2 flex items-center justify-center h-8 w-8 rounded-full hover:bg-gray-400 focus:ring-inset "><span className="sr-only">Close sidebar</span><i className="fa-solid fa-xmark" style={{ color: "#fefc78" }} ></i></button>
+            </div>
+
+
+
+
+          </div>
+
+        ) : (null)
       }
-    </div>
+    </div >
 
 
 
