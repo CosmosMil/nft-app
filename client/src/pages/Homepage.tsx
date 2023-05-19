@@ -55,7 +55,7 @@ const Homepage = (props: Props) => {
   return (
     <>
       {/* <Sidebar /> */}
-      <div className="p-4 sm:ml-60"
+      <div className="p-4 sm:ml-64"
       // onClick={() => {
       //   if (showSidebar) {
       //     toggleSidebar();
