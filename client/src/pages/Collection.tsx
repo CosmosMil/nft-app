@@ -67,7 +67,7 @@ const Collection = () => {
                   />}
               </React.Fragment>
             )
-          }) : <div><i className="fa-regular fa-spinner fa-spin"></i>
+          }) : <div><i className="fa-solid fa-yin-yang fa-spin"></i>
           </div>}
 
         </div>

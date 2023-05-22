@@ -71,32 +71,34 @@ const Sidebar = (props: Props) => {
               </NavLink>
             </li>
 
-            <li>
-              <NavLink to="/upload" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
-                <i className="fa-sharp fa-solid fa-cubes"> </i>
-                <span className="flex-1 ml-3 whitespace-nowrap">Upload NFTs</span>
-              </NavLink>
-            </li>
+
             <div>
               {user ? (
-                <li>
-                  <div className='text-left p-7 font-serif border-2 border-dotted border-slate-400'>
-                    <i className="fa-regular fa-hand"></i>
-                    {' Welcome back ' + user.username + '!'}
+                <div>
+                  <li>
+                    <NavLink to="/upload" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
+                      <i className="fa-sharp fa-solid fa-cubes"> </i>
+                      <span className="flex-1 ml-3 whitespace-nowrap">Upload NFTs</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <div className='text-left p-7 font-serif border-2 border-dotted border-slate-400'>
+                      <i className="fa-regular fa-hand"></i>
+                      {' Welcome back ' + user.username + '!'}
 
-                  </div>
+                    </div>
 
-                  <div className="flex justify-end items-center p-3 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700 space-x-2">
-                    <i className="fa-solid fa-backward"></i>
-                    <button onClick={async () => {
-                      try {
-                        logout()
-                        console.log("sign out successful");
-                        navigate('/');
-                      } catch (error) { console.log(error) };
-                    }}
-                    >Log Out
-                    </button> </div> </li>) :
+                    <div className="flex justify-end items-center p-3 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700 space-x-2">
+                      <i className="fa-solid fa-backward"></i>
+                      <button onClick={async () => {
+                        try {
+                          logout()
+                          console.log("sign out successful");
+                          navigate('/');
+                        } catch (error) { console.log(error) };
+                      }}
+                      >Log Out
+                      </button> </div> </li> </div>) :
                 (<div>
                   <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                     <i className="fa-solid fa-hippo"></i>
@@ -108,7 +110,7 @@ const Sidebar = (props: Props) => {
                     <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
                   </NavLink></div>)}
             </div>
-            <div className='p-20'></div>
+
 
 
 

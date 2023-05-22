@@ -1,10 +1,12 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 type Props = {}
 
 const Register = (props: Props) => {
 
+  let navigate = useNavigate();
   const [formData, setFormData] = useState<SubmitRegisterData>({
     email: "",
     password: "",
@@ -40,11 +42,14 @@ const Register = (props: Props) => {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/new`, requestOptions);
       const result = await response.json();
       console.log(result);
-      alert("Success! Check console.")
-    } catch (error) {
-      console.log(error)
-      alert("Something went wrong - check console")
+      navigate('/login')
     }
+
+    catch (error) {
+      console.log(error)
+
+    }
+
   }
 
   return (

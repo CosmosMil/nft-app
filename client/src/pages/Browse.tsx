@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Browse = () => {
   const [data, setData] = useState<NFT[] | null>(null);
@@ -24,7 +24,9 @@ const Browse = () => {
 
   };
 
-  fetchNFTs();
+  useEffect(() => {
+    fetchNFTs();
+  }, []);
 
   return (
 
@@ -32,7 +34,7 @@ const Browse = () => {
       <h1 className="text-5xl text-center text-indigo-400 font-serif p-5">BROWSE NFTS</h1>
       <div className='p-5 border-2 border-dotted border-indigo-400'>
         <div className='flex flex-wrap items-start justify-center'>
-          {data && data.map((nft) => {
+          {data ? data.map((nft) => {
 
             return (
               <React.Fragment key={nft._id}>
@@ -45,7 +47,8 @@ const Browse = () => {
                 </div>
               </React.Fragment>
             );
-          })}
+          }) : <div><i className="fa-solid fa-yin-yang fa-spin"></i>
+          </div>}
 
 
 
