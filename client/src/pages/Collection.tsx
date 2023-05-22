@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import Modal from '../components/Modal';
-import { NOTFOUND } from 'dns';
-import { isTemplateSpan } from 'typescript';
 
 
 const Collection = () => {
@@ -47,22 +45,38 @@ const Collection = () => {
           <i className="fa-solid fa-hand-point-down"></i> click on NFT to add / update info</p></div>
         <div className='flex flex-wrap items-start justify-center'>
 
-          {data ? data.map((item) => (
-            <div className=''>
-              <div key={item._id} className='h-80 w-54 p-3 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2'>
-                <img src={item.preview} alt="NFT" className='object-scale-down w-52 h-52' onClick={() => openModal(item)} />
-                <div className='text-center text-yellow-100 p-2'>
-                  {item.name} <br /> {item.price} <br /> {item.mintdate}
+          {data ? data.map((nft) => {
+
+            return (
+              <React.Fragment key={nft._id}>
+
+                <div className='h-80 w-54 p-3 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2'>
+                  <img src={nft.preview} alt="NFT" className='object-scale-down w-52 h-52' onClick={() => openModal(nft)} />
+                  <div className='text-center text-yellow-100 p-2'>
+                    {nft.name} <br /> {nft.price} <br /> {nft.mintdate}
+                  </div>
                 </div>
-              </div>
-            </div>
-          )) : <div><i className="fa-regular fa-spinner fa-spin"></i>
+                {selectedNFT &&
+                  <Modal
+                    _id={selectedNFT._id}
+                    preview={selectedNFT.preview}
+                    owner={selectedNFT.owner}
+                    visible={modalVisible}
+                    setVisible={setModalVisible}
+                  />}
+              </React.Fragment>
+            )
+          }) : <div><i className="fa-regular fa-spinner fa-spin"></i>
           </div>}
+
         </div>
       </div>
 
-      {selectedNFT && <Modal _id={selectedNFT._id} name={selectedNFT.name || ''} price={selectedNFT.price || ''} mintdate={selectedNFT.mintdate || ''} preview={selectedNFT.preview} visible={modalVisible} setVisible={setModalVisible} />}
+
+
+      {/* {selectedNFT && <Modal _id={selectedNFT._id} preview={selectedNFT.preview} owner={selectedNFT.owner} visible={modalVisible} setVisible={setModalVisible} />} */}
     </div>
+
   )
 }
 

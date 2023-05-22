@@ -1,43 +1,99 @@
 import userEvent from '@testing-library/user-event'
-import React, { useContext, useEffect, useState } from 'react'
+import { stringify } from 'querystring';
+import React, { useContext, useEffect, useState, FormEvent, ChangeEvent } from 'react'
+import { SubmitOptions } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 
 type Props = {
+
   _id: string,
-  name: string,
-  price: string,
-  mintdate: string,
   preview: string,
-  visible: boolean
+  owner: string,
+  visible: boolean,
   setVisible: (visible: boolean) => void,
 }
+
+
 
 const Modal = (props: Props) => {
 
   const { user } = useContext(AuthContext);
-  const [nftInfo, setNftInfo] = useState(null)
+  const [nftInfo, setNftInfo] = useState<NFT>({
+    _id: props._id,
+    preview: props.preview,
+    owner: props.owner,
+    name: "",
+    price: "",
+    mintdate: ""
+  }
+  )
 
-  const _id = props._id;
-  useEffect(() => {
+  // useEffect(() => {
+  //   setNftInfo(nftInfo => ({ ...nftInfo, _id: props._id }));
+  // }, [props._id]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value !== '') {
+      setNftInfo({ ...nftInfo, [e.target.name]: e.target.value })
+    }
+  }
+
+  const handleSubmitInfo = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (user) {
+      // const updateData = {
+
+      //   ...nftInfo
+      // };
+
+      const submitData = JSON.stringify({ ...nftInfo })
 
 
-    const nftInfo = async (_id: string) => {
-      const urlencoded = new URLSearchParams();
-      urlencoded.append("_id", _id);
+
       const requestOptions = {
-        method: 'GET',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: submitData,
       };
+      console.log('nftInfo: ', nftInfo);
+
       try {
-        const response = await fetch(`http://localhost:5001/api/nfts/info?${_id}`, requestOptions)
+        const response = await fetch("http://localhost:5001/api/nfts/update", requestOptions)
         const result = await response.json();
-        console.log(result);
+
         setNftInfo(result);
+        console.log(result);
       } catch (error) {
         console.log('error', error);
       }
-    };
-    nftInfo(_id);
-  }, [_id]);
+    }
+    closeModal();
+
+
+  };
+
+
+  // useEffect(() => {
+
+
+  //   const nftInfo = async (_id: string) => {
+  //     const urlencoded = new URLSearchParams();
+  //     urlencoded.append("_id", _id);
+  //     const requestOptions = {
+  //       method: 'GET',
+  //     };
+  //     try {
+  //       const response = await fetch(`http://localhost:5001/api/nfts/info?${_id}`, requestOptions)
+  //       const result = await response.json();
+  //       console.log(result);
+  //       setNftInfo(result);
+  //     } catch (error) {
+  //       console.log('error', error);
+  //     }
+  //   };
+  //   nftInfo(_id);
+  // }, [_id]);
 
   const closeModal = () => {
     props.setVisible(false)
@@ -54,10 +110,12 @@ const Modal = (props: Props) => {
             <div className='flex items-start'><div className='p-4 sm:ml-64 bg-indigo-500 flex flex-col justify-center items-center'>
 
               <img className='object-scale-down w-52 h-52' src={props.preview} alt='NFT' />
-              <form className=' flex flex-col p-3 w-3/4'>
-                <input className='' type='text' name='name' placeholder='name' />
-                <input className='' type='text' name='price' placeholder='price' />
-                <input className='' type='text' name='mint date' placeholder='mint date' />
+              <form className=' flex flex-col p-3 w-3/4' onSubmit={handleSubmitInfo}>
+                <input className='' type='text' name='name' placeholder='name' onChange={handleChange} />
+                <input className='' type='text' name='price' placeholder='price' onChange={handleChange} />
+                <input className='' type='text' name='mintdate' placeholder='mint date' onChange={handleChange} />
+                <div className='p-2'>
+                  <button type="submit" className='p-1 rounded text-yellow-100 ml-40 hover:bg-slate-500'>submit</button></div>
               </form>
 
             </div>

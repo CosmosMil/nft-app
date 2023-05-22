@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const NFTSchema = new mongoose.Schema({
   name: { type: String, required: false },
   price: { type: String, required: false },
-  minted: { type: String, required: false },
+  mintdate: { type: String, required: false },
   preview: { type: String, required: true },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "user" }
   },

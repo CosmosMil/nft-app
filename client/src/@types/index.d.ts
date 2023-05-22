@@ -38,3 +38,10 @@ interface NFT {
   price?: string,
   mintdate?: string
 }
+
+interface nftInfo {
+  name?: string,
+  price?: string,
+  mintdate?: string
+
+}
