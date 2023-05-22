@@ -10,7 +10,7 @@ type Props = {
   preview: string,
   owner: string,
   visible: string,
-  // setVisible: (visible: boolean) => void,
+  setSelectedNFT: (nft: NFT | null) => void;
 }
 
 
@@ -108,7 +108,8 @@ const Modal = (props: Props) => {
   // }, [_id]);
 
   const closeModal = () => {
-    setOpen(false)
+    setOpen(false);
+    props.setSelectedNFT(null)
   }
 
   return (

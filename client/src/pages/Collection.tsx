@@ -62,7 +62,8 @@ const Collection = () => {
                     preview={nft.preview}
                     owner={nft.owner}
                     visible={selectedNFT._id}
-                  // setVisible={setModalVisible}
+                    setSelectedNFT={setSelectedNFT}
+
                   />}
               </React.Fragment>
             )
