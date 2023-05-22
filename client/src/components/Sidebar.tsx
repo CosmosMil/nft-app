@@ -65,14 +65,21 @@ const Sidebar = (props: Props) => {
                   <span className="flex-1 ml-3 whitespace-nowrap">Home</span></NavLink>)}
             </li>
             <li>
+              <NavLink to="/browse" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
+                <i className="fa-solid fa-magnifying-glass"></i>
+                <span className="flex-1 ml-3 whitespace-nowrap">Browse NFTs</span>
+              </NavLink>
+            </li>
+
+            <li>
               <NavLink to="/upload" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                 <i className="fa-sharp fa-solid fa-cubes"> </i>
                 <span className="flex-1 ml-3 whitespace-nowrap">Upload NFTs</span>
               </NavLink>
             </li>
-            <li>
+            <div>
               {user ? (
-                <div>
+                <li>
                   <div className='text-left p-7 font-serif border-2 border-dotted border-slate-400'>
                     <i className="fa-regular fa-hand"></i>
                     {' Welcome back ' + user.username + '!'}
@@ -89,7 +96,7 @@ const Sidebar = (props: Props) => {
                       } catch (error) { console.log(error) };
                     }}
                     >Log Out
-                    </button> </div> </div>) :
+                    </button> </div> </li>) :
                 (<div>
                   <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
                     <i className="fa-solid fa-hippo"></i>
@@ -100,7 +107,7 @@ const Sidebar = (props: Props) => {
                     <i className="fa-solid fa-rocket"></i>
                     <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
                   </NavLink></div>)}
-            </li>
+            </div>
             <div className='p-20'></div>
 
 
