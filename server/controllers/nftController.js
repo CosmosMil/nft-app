@@ -72,11 +72,14 @@ console.log(req.files)
 const addNFTInfo = async (req, res) => {
   const { _id } = req.body;
   console.log("Request body: ", req.body); // Log the entire request body
-
+  const update = {};
+  if (req.body.name !== '') update.name = req.body.name;
+  if (req.body.price !== '') update.price = req.body.price;
+  if (req.body.mintdate !== '') update.mintdate = req.body.mintdate;
   try {
     const NFTInfo = await NFTModel.findOneAndUpdate(
       { _id : _id},
-      { ...req.body },
+      update,
       {
         new: true,
         runValidators: true,

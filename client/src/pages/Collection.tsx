@@ -4,7 +4,7 @@ import Modal from '../components/Modal';
 
 
 const Collection = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
   const [selectedNFT, setSelectedNFT] = useState<NFT | null>(null)
 
   const { user } = useContext(AuthContext);
@@ -33,7 +33,7 @@ const Collection = () => {
 
   const openModal = (nft: NFT) => {
     setSelectedNFT(nft);
-    setModalVisible(true);
+    // setModalVisible(true);
   }
 
 
@@ -50,19 +50,19 @@ const Collection = () => {
             return (
               <React.Fragment key={nft._id}>
 
-                <div className='h-80 w-54 p-3 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2'>
-                  <img src={nft.preview} alt="NFT" className='object-scale-down w-52 h-52' onClick={() => openModal(nft)} />
+                <div className='h-80 w-54 p-3 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2' onClick={() => openModal(nft)} >
+                  <img src={nft.preview} alt="NFT" className='object-scale-down w-52 h-52' />
                   <div className='text-center text-yellow-100 p-2'>
                     {nft.name} <br /> {nft.price} <br /> {nft.mintdate}
                   </div>
                 </div>
                 {selectedNFT &&
                   <Modal
-                    _id={selectedNFT._id}
-                    preview={selectedNFT.preview}
-                    owner={selectedNFT.owner}
-                    visible={modalVisible}
-                    setVisible={setModalVisible}
+                    _id={nft._id}
+                    preview={nft.preview}
+                    owner={nft.owner}
+                    visible={selectedNFT._id}
+                  // setVisible={setModalVisible}
                   />}
               </React.Fragment>
             )

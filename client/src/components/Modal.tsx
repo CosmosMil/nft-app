@@ -9,13 +9,15 @@ type Props = {
   _id: string,
   preview: string,
   owner: string,
-  visible: boolean,
-  setVisible: (visible: boolean) => void,
+  visible: string,
+  // setVisible: (visible: boolean) => void,
 }
 
 
 
 const Modal = (props: Props) => {
+
+  const [open, setOpen] = useState(false);
 
   const { user } = useContext(AuthContext);
   const [nftInfo, setNftInfo] = useState<NFT>({
@@ -27,6 +29,16 @@ const Modal = (props: Props) => {
     mintdate: ""
   }
   )
+
+  useEffect(() => {
+    if (props.visible === props._id) {
+      setOpen(true)
+    }
+    else {
+      setOpen(false)
+    }
+
+  }, [props.visible])
 
   // useEffect(() => {
   //   setNftInfo(nftInfo => ({ ...nftInfo, _id: props._id }));
@@ -96,38 +108,37 @@ const Modal = (props: Props) => {
   // }, [_id]);
 
   const closeModal = () => {
-    props.setVisible(false)
+    setOpen(false)
   }
-
 
   return (
 
     <div className="">
       {
-        props.visible ? (
+        open &&
 
-          <div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center' >
-            <div className='flex items-start'><div className='p-4 sm:ml-64 bg-indigo-500 flex flex-col justify-center items-center'>
+        <div className='fixed inset-0 bg-black bg-opacity-5 backdrop-blur-sm flex justify-center items-center' >
+          <div className='flex items-start'><div className='p-4 sm:ml-64 bg-indigo-500 flex flex-col justify-center items-center'>
 
-              <img className='object-scale-down w-52 h-52' src={props.preview} alt='NFT' />
-              <form className=' flex flex-col p-3 w-3/4' onSubmit={handleSubmitInfo}>
-                <input className='' type='text' name='name' placeholder='name' onChange={handleChange} />
-                <input className='' type='text' name='price' placeholder='price' onChange={handleChange} />
-                <input className='' type='text' name='mintdate' placeholder='mint date' onChange={handleChange} />
-                <div className='p-2'>
-                  <button type="submit" className='p-1 rounded text-yellow-100 ml-40 hover:bg-slate-500'>submit</button></div>
-              </form>
-
-            </div>
-              <button onClick={closeModal} type="button" className="ml-2 flex items-center justify-center h-8 w-8 rounded-full hover:bg-gray-400 focus:ring-inset "><span className="sr-only">Close sidebar</span><i className="fa-solid fa-xmark" style={{ color: "#fefc78" }} ></i></button>
-            </div>
-
-
-
+            <img className='object-scale-down w-52 h-52' src={props.preview} alt='NFT' />
+            <form className=' flex flex-col p-3 w-3/4' onSubmit={handleSubmitInfo}>
+              <input className='' type='text' name='name' placeholder='name' onChange={handleChange} />
+              <input className='' type='text' name='price' placeholder='price' onChange={handleChange} />
+              <input className='' type='text' name='mintdate' placeholder='mint date' onChange={handleChange} />
+              <div className='p-2'>
+                <button type="submit" className='p-1 rounded text-yellow-100 ml-40 hover:bg-slate-500'>submit</button></div>
+            </form>
 
           </div>
+            <button onClick={closeModal} type="button" className="ml-2 flex items-center justify-center h-8 w-8 rounded-full hover:bg-gray-400 focus:ring-inset "><span className="sr-only">Close sidebar</span><i className="fa-solid fa-xmark" style={{ color: "#fefc78" }} ></i></button>
+          </div>
 
-        ) : (null)
+
+
+
+        </div>
+
+
       }
     </div >
 
