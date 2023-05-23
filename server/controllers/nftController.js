@@ -2,12 +2,24 @@ import NFTModel from "../models/nftModel.js";
 import { v2 as cloudinary } from "cloudinary";
 
 const getAllNFTs = async (req, res) => {
+  console.log(req.params);
   try {
     const NFT = await NFTModel.find().populate("owner");
     res.status(200).json(NFT);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Something went wrong..." });
+  }
+};
+
+const getNFT = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const NFT = await NFTModel.findById(id)
+    res.status(200).json(NFT);
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json(error.message);
   }
 };
 
@@ -115,4 +127,4 @@ const testNew = async (req, res) => {
     console.log(error);
   }
 };
-export { getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo };
+export { getAllNFTs, testNew, getNFT, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo };

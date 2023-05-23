@@ -1,9 +1,10 @@
 import express from "express";
-import {getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo} from "../controllers/nftController.js"
+import {getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo, getNFT} from "../controllers/nftController.js"
 import { multerUpload } from "../middlewares/multer.js";
 
 const NFTRouter = express.Router();
 
+// NFTRouter.get("/id/:id", getNFT);
 NFTRouter.get("/all", getAllNFTs);
 NFTRouter.get("/all/:id", getAllNFTsFromUser);
 

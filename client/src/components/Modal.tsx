@@ -8,7 +8,9 @@ type Props = {
 
   _id: string,
   preview: string,
-  owner: string,
+  owner: {
+    _id: string;
+  };
   visible: string,
   setSelectedNFT: (nft: NFT | null) => void;
 }
@@ -23,7 +25,7 @@ const Modal = (props: Props) => {
   const [nftInfo, setNftInfo] = useState<NFT>({
     _id: props._id,
     preview: props.preview,
-    owner: props.owner,
+    owner: { _id: props.owner._id },
     name: "",
     price: "",
     mintdate: ""
