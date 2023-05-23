@@ -8,7 +8,11 @@ const Collection = () => {
   const [selectedNFT, setSelectedNFT] = useState<NFT | null>(null)
 
   const { user } = useContext(AuthContext);
-  const [data, setData] = useState<NFT[] | null>(null);
+  const [data, setData] = useState<NFT[] | null>([]);
+
+  const updateNFT = (updatedNFT: NFT) => {
+    setData(data => data && data.map(nft => nft._id === updatedNFT._id ? updatedNFT : nft));
+  }
 
   useEffect(() => {
     if (user) {
@@ -63,6 +67,7 @@ const Collection = () => {
                     owner={nft.owner}
                     visible={selectedNFT._id}
                     setSelectedNFT={setSelectedNFT}
+                    updateNFT={updateNFT}  // Pass updateNFT function to Modal
 
                   />}
               </React.Fragment>

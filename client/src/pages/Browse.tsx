@@ -17,11 +17,9 @@ const Browse = () => {
 
         const response = await fetch("http://localhost:5001/api/nfts/all", requestOptions);
         const result = await response.json();
-        console.log('Fetched NFTs: ', result);
-        console.log('User: ', user);
 
-        // Check if user is defined and then filter data
-        if (user && user._id) {
+        // filter data if user is defined
+        if (user) {
           const filtered = result.filter((nft: NFT) => nft.owner._id !== user._id);
           setData(filtered);
         }

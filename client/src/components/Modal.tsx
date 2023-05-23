@@ -13,6 +13,7 @@ type Props = {
   };
   visible: string,
   setSelectedNFT: (nft: NFT | null) => void;
+  updateNFT: (updatedNFT: NFT) => void;
 }
 
 
@@ -76,8 +77,8 @@ const Modal = (props: Props) => {
         const response = await fetch("http://localhost:5001/api/nfts/update", requestOptions)
         const result = await response.json();
 
-        setNftInfo(result);
-        console.log(result);
+        props.updateNFT(result);
+
       } catch (error) {
         console.log('error', error);
       }
