@@ -4,7 +4,7 @@ import { multerUpload } from "../middlewares/multer.js";
 
 const NFTRouter = express.Router();
 
-// NFTRouter.get("/id/:id", getNFT);
+NFTRouter.get("/id/:id", getNFT);
 NFTRouter.get("/all", getAllNFTs);
 NFTRouter.get("/all/:id", getAllNFTsFromUser);
 

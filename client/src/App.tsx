@@ -9,6 +9,7 @@ import Sidebar from './components/Sidebar';
 import Upload from './pages/Upload';
 import Collection from './pages/Collection';
 import Browse from './pages/Browse';
+import SingleNFT from './pages/SingleNFT';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
             <Route path='upload' element={<Upload />} />
             <Route path='collection' element={<Collection />} />
             <Route path='browse' element={<Browse />} />
+            <Route path='/browse/nft/:id' element={<SingleNFT />} />
           </Routes>
         </BrowserRouter>
       </AuthContextProvider>

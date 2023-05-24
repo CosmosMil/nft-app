@@ -52,7 +52,7 @@ const Browse = () => {
             return (
               <React.Fragment key={nft._id}>
 
-                <div className='h-80 w-54 p-3 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2' >
+                <div className='h-80 w-54 p-3 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2' onClick={() => window.location.href = `browse/nft/${nft._id}`} >
                   <img src={nft.preview} alt="NFT" className='object-scale-down w-52 h-52' />
                   <div className='text-center text-yellow-100 p-2'>
                     {nft.name} <br /> {nft.price} <br /> {nft.mintdate}
