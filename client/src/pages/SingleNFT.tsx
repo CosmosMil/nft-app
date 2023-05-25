@@ -12,6 +12,7 @@ const SingleNFT = () => {
 
   useEffect(() => {
     if (user) {
+      const loggedInUser = user._id;
       const requestOptions = {
         method: 'GET',
       };
@@ -27,17 +28,6 @@ const SingleNFT = () => {
 
       };
 
-      fetchNFT();
-    }
-  }, [user]);
-
-
-  useEffect(() => {
-    if (user) {
-      const loggedInUser = user._id;
-      const requestOptions = {
-        method: 'GET',
-      };
       const fetchData = async () => {
         try {
           const response = await fetch(`http://localhost:5001/api/nfts/all/${loggedInUser}`, requestOptions);
@@ -48,7 +38,9 @@ const SingleNFT = () => {
           console.log('error', error);
         }
       };
-      fetchData();
+
+      fetchNFT();
+      fetchData()
     }
   }, [user]);
 
@@ -69,14 +61,14 @@ const SingleNFT = () => {
             </div>
 
           </div>
-          <div className='flex justify-center p-7'>
+          <div className='flex justify-center p-7 mt-5'>
             <button className='p-2 rounded font-serif bg-indigo-400'>SWAP <br />request</button>
           </div>
         </div>
       )}
       {collectionData && (
         <div className="p-4 sm:ml-64">
-          <h1 className=" p-3 text-3xl text-center text-indigo-400 font-serif">My Collection</h1>
+          <h1 className=" p-3 text-3xl text-center text-indigo-400 font-serif">Swap with:</h1>
           <div className='p-5 border-2 border-dotted border-indigo-400'><div className='flex flex-wrap items-start justify-center'>
             {collectionData.map((nft) => (
               <div key={nft._id} >
