@@ -7,6 +7,7 @@ import userRouter from "./routes/userRoutes.js";
 import cors from "cors";
 import NFTRouter from "./routes/nftRoutes.js";
 import passportConfig from "./config/passport.js";
+import SwapRouter from "./routes/swapRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -41,6 +42,7 @@ const connectMongoose = () => {
 const connectRoutes = () => {
   app.use("/api/user", userRouter);
   app.use("/api/nfts", NFTRouter);
+  app.use("/api/swaps", SwapRouter);
   app.use("*", (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 };
 

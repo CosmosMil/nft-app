@@ -20,7 +20,7 @@ const Browse = () => {
 
         // filter data if user is defined
         if (user) {
-          const filtered = result.filter((nft: NFT) => nft.owner._id !== user._id);
+          const filtered = result.filter((nft: NFT) => nft.owner !== user._id);
           setData(filtered);
         }
         else {

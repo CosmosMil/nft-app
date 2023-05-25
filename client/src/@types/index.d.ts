@@ -33,9 +33,7 @@ interface fetchFailed {
 interface NFT {
   _id: string,
   preview: string,
-  owner: {
-    _id: string;
-  };
+  owner: string;
   name?: string,
   price?: string,
   mintdate?: string
