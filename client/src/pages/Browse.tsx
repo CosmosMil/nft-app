@@ -24,7 +24,6 @@ const Browse = () => {
           const filtered = result.filter((nft: NFT) => nft.owner !== user._id);
 
           setData(filtered);
-          console.log(filtered)
         }
         else {
           setData(result);

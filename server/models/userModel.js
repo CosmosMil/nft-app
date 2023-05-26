@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     NFTs: [{ type: mongoose.Schema.Types.ObjectId, ref: "nft" }],
     avatar: { type: String, default: "https://res.cloudinary.com/dte85mpkw/image/upload/v1683031892/users_profile_pics/placeholder_mehr42.jpg" },
+    
     requests: [{type: mongoose.Schema.Types.ObjectId, ref: "swaps"}],
   },
   { timestamps: true }
