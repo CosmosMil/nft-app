@@ -96,7 +96,7 @@ const SwapNFT = () => {
       const result = await response.json();
       console.log(result);
       if (response.ok) {
-        setMessage('Your swap-request was successful!')
+        setMessage('Your swap request was successful!')
       }
       else {
         setMessage('Something went wrong, try again!')
@@ -125,10 +125,15 @@ const SwapNFT = () => {
 
           </div>
           <div className='flex justify-center p-7 mt-5'>
-            <button className='p-2 rounded font-serif bg-indigo-400' onClick={handleReqClick}>SWAP <br />request</button>
+            <div className='text-center'>
+              <button className='p-2 rounded font-serif bg-indigo-400' onClick={handleReqClick}>SWAP <br />request</button>
+              <div className='p-10 text-yellow-100 text-xl'><i className="fa-regular fa-thumbs-up fa-bounce"></i>
+                {message && <p className=''>
+                  {message}</p>}</div>
 
-          </div>
-          {message && <p>{message}</p>}
+            </div></div>
+
+
         </div>
       )}
       {collectionData && (
