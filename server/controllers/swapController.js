@@ -7,7 +7,7 @@ const createSwapRequest = async (req, res) => {
       ...req.body,
     });
     const result = await newRequest.save();
-    return result;
+    res.send(result);
   } catch (error) {
     console.log(error);
   }

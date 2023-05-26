@@ -9,9 +9,11 @@ const SwapNFT = () => {
   const { id } = useParams();
   const [collectionData, setCollectionData] = useState<NFT[] | null>([]);
   const [nftData, setNftData] = useState<NFT | null>(null);
+  const [message, setMessage] = useState('');
+  //marking the chosen NFT
   const [chosenNft, setChosenNft] =
     useState<NFT | null>(null);
-  //changing style of chosen NFT
+
 
 
   useEffect(() => {
@@ -25,7 +27,6 @@ const SwapNFT = () => {
           const response = await fetch
             (`http://localhost:5001/api/nfts/id/${id}`, requestOptions);
           const result = await response.json();
-          console.log(result)
           setNftData(result);
         } catch (error) {
           console.log(error)
@@ -37,7 +38,6 @@ const SwapNFT = () => {
         try {
           const response = await fetch(`http://localhost:5001/api/nfts/all/${loggedInUser}`, requestOptions);
           const result = await response.json();
-          console.log(result);
           setCollectionData(result);
         } catch (error) {
           console.log('error', error);
@@ -49,7 +49,8 @@ const SwapNFT = () => {
     }
   }, [user]);
 
-  const chosenNftA = async (nft: NFT) => {
+  const chosenNftA = async (nft: NFT, e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault()
     const id = nft._id;
     const requestOptions = {
       method: 'GET',
@@ -58,14 +59,12 @@ const SwapNFT = () => {
       const response = await fetch
         (`http://localhost:5001/api/nfts/id/${id}`, requestOptions);
       const result = await response.json();
-      console.log(result)
       setChosenNft(result);
     } catch (error) {
       console.log(error)
     }
 
   }
-  console.log('nftData:', nftData, 'Type:', typeof nftData?.owner);
 
   const handleReqClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -96,8 +95,15 @@ const SwapNFT = () => {
       const response = await fetch('http://localhost:5001/api/swaps/new/', requestOptions);
       const result = await response.json();
       console.log(result);
+      if (response.ok) {
+        setMessage('Your swap-request was successful!')
+      }
+      else {
+        setMessage('Something went wrong, try again!')
+      }
     } catch (error) {
       console.log(error);
+      setMessage('An error occurred, please try again later')
     }
 
   };
@@ -120,7 +126,9 @@ const SwapNFT = () => {
           </div>
           <div className='flex justify-center p-7 mt-5'>
             <button className='p-2 rounded font-serif bg-indigo-400' onClick={handleReqClick}>SWAP <br />request</button>
+
           </div>
+          {message && <p>{message}</p>}
         </div>
       )}
       {collectionData && (
@@ -130,7 +138,7 @@ const SwapNFT = () => {
             {collectionData.map((nft) => (
               <div key={nft._id} >
                 <div className={`p-3 h-64 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2 ${nft._id === chosenNft?._id ? 'border-yellow-100' : 'border-indigo-400'}`
-                } onClick={() => chosenNftA(nft)}>
+                } onClick={(e) => chosenNftA(nft, e)}>
                   <img src={nft.preview} alt={nft.name} className='object-scale-down w-32 h-32 p-2' />
                   <div className='text-center text-yellow-100 p-5'>
                     {nft.name && nft.name} <br /> {nft.price && nft.price}<br /> {nft.mintdate && nft.mintdate}
