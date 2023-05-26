@@ -13,6 +13,29 @@ const createSwapRequest = async (req, res) => {
   }
 };
 
-export { createSwapRequest}
+const getAllRequestsFromUser = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const requests = await SwapModel.find({ userA: userId });
+    res.status(200).json(requests);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Something went wrong..." });
+  }
+};
+const getAllRequestsForUser = async (req, res) => {
+  try {
+    console.log(req.params.userB)
+    const id = req.params.userB;
+    const swaps = await SwapModel.find({ userB: id });
+  
+    res.status(200).json(swaps);
+  }
+  catch (error) {
+    res.status(500).json(error.message);
+  }
+ }
+
+export { createSwapRequest, getAllRequestsFromUser, getAllRequestsForUser}
   
 

@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import SwapNFT from '../pages/SwapNFT';
 
 
 type Props = {
@@ -13,6 +14,7 @@ const Sidebar = (props: Props) => {
   let navigate = useNavigate();
 
   const [showSidebar, setShowSidebar] = useState(false);
+  const [requests, setRequests] = useState([]);
 
   const openSidebar = () => {
     setShowSidebar(true);
@@ -22,22 +24,35 @@ const Sidebar = (props: Props) => {
     setShowSidebar(false)
   }
 
-  // window.onclick = () => {
-  //   setShowSidebar(false)
-  // }
-  // const toggleButton = () => {
-  //   console.log("button clicked");
-  //   if (showSidebar === false) {
-  //     setSidebarShown(true)
-  //   }
-  //   else {
-  //     setSidebarShown(false)
-  //   }
-  // };
+  useEffect(() => {
 
-  // console.log("testing")
+    if (user) {
+      const userId = user?._id;
 
-  // const ddd = ${ showSidebar ?"translate-x-0": "-translate-x-full"} sm: translate-x - 0`} aria-label="Sidebar"
+      const requestOptions = {
+        method: 'GET',
+      };
+
+      const showRequests = async () => {
+
+        try {
+          const response = await fetch(`http://localhost:5001/api/swaps/requests/${userId}`, requestOptions)
+
+          const result = await response.json();
+          setRequests(result);
+        }
+        catch (error) {
+          console.log('error', error);
+        }
+      };
+
+      showRequests();
+    }
+  }, [user]);
+
+
+
+
 
 
   return (
@@ -83,8 +98,9 @@ const Sidebar = (props: Props) => {
                   </li>
                   <li>
                     <div className='text-left p-7 font-serif border-2 border-dotted border-slate-400'>
-                      <i className="fa-regular fa-hand"></i>
-                      {' Welcome back ' + user.username + '!'}
+
+                      {' Welcome back ' + user.username + '!'} <div onClick={() => window.location.href = `requests/${user._id}`}
+                        className='text-yellow-100 mt-3'> {requests && `you received ${requests.length} requests `}<i className="fa-regular fa-hand"></i></div>
 
                     </div>
 

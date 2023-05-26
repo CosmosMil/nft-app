@@ -10,6 +10,7 @@ import Upload from './pages/Upload';
 import Collection from './pages/Collection';
 import Browse from './pages/Browse';
 import SwapNFT from './pages/SwapNFT';
+import Request from './pages/Request';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
             <Route path='collection' element={<Collection />} />
             <Route path='browse' element={<Browse />} />
             <Route path='/browse/nft/:id' element={<SwapNFT />} />
+            <Route path='/requests/:id' element={<Request />} />
           </Routes>
         </BrowserRouter>
       </AuthContextProvider>

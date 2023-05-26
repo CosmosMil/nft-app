@@ -127,8 +127,8 @@ const SwapNFT = () => {
           <div className='flex justify-center p-7 mt-5'>
             <div className='text-center'>
               <button className='p-2 rounded font-serif bg-indigo-400' onClick={handleReqClick}>SWAP <br />request</button>
-              <div className='p-10 text-yellow-100 text-xl'><i className="fa-regular fa-thumbs-up fa-bounce"></i>
-                {message && <p className=''>
+              <div className='p-10 text-yellow-100 text-xl'>
+                {message && <p> <i className="fa-regular fa-thumbs-up fa-bounce"></i> <br />
                   {message}</p>}</div>
 
             </div></div>

@@ -39,9 +39,10 @@ interface NFT {
   mintdate?: string
 }
 
-interface nftInfo {
-  name?: string,
-  price?: string,
-  mintdate?: string
-
+interface Swap {
+  id: string,
+  userA: string,
+  userB: string,
+  nftA: string,
+  nftB:string
 }
