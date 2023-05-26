@@ -100,7 +100,7 @@ const Sidebar = (props: Props) => {
                     <div className='text-left p-7 font-serif border-2 border-dotted border-slate-400'>
 
                       {' Welcome back ' + user.username + '!'} <div onClick={() => window.location.href = `requests/${user._id}`}
-                        className='text-yellow-100 mt-3'> {requests && `you received ${requests.length} requests `}<i className="fa-regular fa-hand"></i></div>
+                        className='text-yellow-100 mt-3'> {requests && `you have ${requests.length} open requests `}<i className="fa-regular fa-hand"></i></div>
 
                     </div>
 

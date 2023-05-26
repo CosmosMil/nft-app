@@ -40,9 +40,13 @@ interface NFT {
 }
 
 interface Swap {
-  id: string,
+  _id: string,
   userA: string,
   userB: string,
-  nftA: string,
-  nftB:string
+  nftA: {
+    preview: string,
+  },
+  nftB: {
+    preview: string
+  }
 }

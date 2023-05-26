@@ -25,10 +25,11 @@ const getAllRequestsFromUser = async (req, res) => {
 };
 const getAllRequestsForUser = async (req, res) => {
   try {
-    console.log(req.params.userB)
     const id = req.params.userB;
-    const swaps = await SwapModel.find({ userB: id });
-  
+    const swaps = await SwapModel.find({ userB: id })
+      .populate('nftA')
+      .populate('nftB');
+ 
     res.status(200).json(swaps);
   }
   catch (error) {

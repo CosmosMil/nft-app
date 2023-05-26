@@ -20,6 +20,7 @@ const Request = () => {
           const response = await fetch(`http://localhost:5001/api/swaps/requests/${userId}`, requestOptions)
 
           const result = await response.json();
+          console.log(result)
           setRequests(result);
         }
         catch (error) {
@@ -37,8 +38,13 @@ const Request = () => {
       <div className='p-5 border-2 border-dotted border-indigo-400'>
         <div className='flex flex-wrap items-start justify-center'>
           {requests && requests.map((swap: Swap) => (
-            <div key={swap.id}>
-              <div>{swap.nftA}</div>
+            <div key={swap._id} className='p-3'>
+              <div className='p-5 border-2 border-dotted  border-indigo-400'>
+                <img src={swap.nftA.preview} alt="NFT" className='object-scale-down w-52 h-52' /></div>
+              <div className='p-5 border-2 border-dotted  border-indigo-400'>
+                <img src={swap.nftB.preview} alt="NFT" className='object-scale-down w-52 h-52' />
+              </div>
+
             </div>
 
           ))}
