@@ -1,4 +1,4 @@
-import User from "../models/userModels.js";
+import User from "../models/userModel.js";
 import { imageUpload } from "../utilities/imageManagement.js";
 import { encryptPassword, verifyPassword } from "../utilities/bycript.js";
 import { generateToken } from "../utilities/jwt.js";

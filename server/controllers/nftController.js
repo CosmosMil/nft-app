@@ -4,7 +4,7 @@ import { v2 as cloudinary } from "cloudinary";
 const getAllNFTs = async (req, res) => {
   console.log(req.params);
   try {
-    const NFT = await NFTModel.find().populate("owner");
+    const NFT = await NFTModel.find();
     res.status(200).json(NFT);
   } catch (error) {
     console.log(error);
