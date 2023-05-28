@@ -27,7 +27,7 @@ const Sidebar = (props: Props) => {
   useEffect(() => {
 
     if (user) {
-      const userId = user?._id;
+      const userId = user._id;
 
       const requestOptions = {
         method: 'GET',
@@ -99,8 +99,8 @@ const Sidebar = (props: Props) => {
                   <li>
                     <div className='text-left p-7 font-serif border-2 border-dotted border-slate-400'>
 
-                      {' Welcome back ' + user.username + '!'} <div onClick={() => window.location.href = `requests/${user._id}`}
-                        className='text-yellow-100 mt-3'> {requests && `you have ${requests.length} open requests `}<i className="fa-regular fa-hand"></i></div>
+                      {' Welcome back ' + user.username + '!'} <button onClick={() => navigate(`requests/${user._id}`)}
+                        className='hover:bg-slate-500 text-yellow-100 rounded mt-3'> {requests && `you have ${requests.length} open requests `}<i className="fa-regular fa-hand"></i></button>
 
                     </div>
 

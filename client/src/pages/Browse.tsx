@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 
 const Browse = () => {
   const [data, setData] = useState<NFT[] | null>(null);
+  let navigate = useNavigate();
 
   const { user } = useContext(AuthContext);
 
@@ -61,7 +63,7 @@ const Browse = () => {
 
                 <div className='h-80 w-54 p-3 border-2 border-dotted border-indigo-400 overflow-hidden mx-2 my-2' onClick={() => {
                   if (user) {
-                    window.location.href = `browse/nft/${nft._id}`
+                    navigate(`nft/${nft._id}`)
                   }
                 }}
                 >
