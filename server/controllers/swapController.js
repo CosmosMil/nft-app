@@ -1,5 +1,6 @@
 import SwapModel from "../models/swapModel.js";
-import { v2 as cloudinary } from "cloudinary";
+import swapNFTs from "../services/swapFunction.js";
+
 
 const createSwapRequest = async (req, res) => {
   try {
@@ -35,8 +36,20 @@ const getAllRequestsForUser = async (req, res) => {
   catch (error) {
     res.status(500).json(error.message);
   }
- }
+}
 
-export { createSwapRequest, getAllRequestsFromUser, getAllRequestsForUser}
+const swapController = async (req, res) => {
+  const { userA, userB, nftA, nftB } = req.body;
+  try {
+    await swapNFTs(userA, userB, nftA, nftB);
+    res.status(200).send("Swap transaction succeeded");
+  } catch (error) {
+    res.status(500).send("Swap transaction failed");
+  }
+};
+ 
+
+
+export { createSwapRequest, getAllRequestsFromUser, getAllRequestsForUser, swapController}
   
 

@@ -40,6 +40,7 @@ const createUser = async (req, res) => {
     password: encryptedPassword,
     avatar: avatar,
     NFTs: [],
+    requests: [],
   });
 
   try {
@@ -96,6 +97,7 @@ const login = async (req, res) => {
             username: existingUser.username,
             NFTs: existingUser.NFTs,
             avatar: existingUser.avatar,
+            requests: existingUser.requests
           },
         });
       }
@@ -113,7 +115,8 @@ const getActiveUser = async (req, res) => {
     email: req.user.email,
     username: req.user.username,
     avatar: req.user.avatar,
-    NFTs: req.user.NFTs
+    NFTs: req.user.NFTs,
+    requests: req.user.requests
 })
 }
 
