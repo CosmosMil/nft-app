@@ -65,9 +65,9 @@ const deleteRequest = async (req, res) => {
     // remove swap from database
     const result = await SwapModel.findByIdAndDelete(id);
     
-    res.status(200).json({ message: "swap deleted" });
+    res.status(200).json({ message: "request deleted" });
   } catch (err) {
-    res.status(500).json({ message: "failed to delete swap", error: err.message });
+    res.status(500).json({ message: "failed to delete request", error: err.message });
   }
 
 }
