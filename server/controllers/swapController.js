@@ -1,14 +1,22 @@
 import SwapModel from "../models/swapModel.js";
 import swapNFTs from "../services/swapFunction.js";
+import User from "../models/userModel.js";
 
 
 const createSwapRequest = async (req, res) => {
+ 
+  const user = req.body.userA;
   try {
     const newRequest = new SwapModel({
       ...req.body,
     });
     const result = await newRequest.save();
+    await User.findByIdAndUpdate(user, {
+      $push: { requests: result },
+    });
+
     res.send(result);
+    console.log("result: ", result);
   } catch (error) {
     console.log(error);
   }

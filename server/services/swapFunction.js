@@ -18,7 +18,7 @@ const swapNFTs = async (userA, userB, nftA, nftB) => {
 
 
     //find the NFT documents
-    const nftADoc = await NFTModel.findOne({ _id: nftA, owner: userA }).session(
+    const nftADoc = await NFTModel.findById({ _id: nftA, owner: userA }).session(
       session
     );
     console.log("nftA", nftADoc);
@@ -27,7 +27,7 @@ const swapNFTs = async (userA, userB, nftA, nftB) => {
     );
     console.log("nftB", nftBDoc);
 
-    //make sure each user owns the NFT they are swapping
+    //make sure all documents are existent
     if (
       !nftADoc ||
       !nftBDoc ||
