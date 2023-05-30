@@ -1,5 +1,5 @@
 import express from "express";
-import { createSwapRequest, getAllRequestsForUser, getAllRequestsFromUser, swapController } from "../controllers/swapController.js";
+import { createSwapRequest, deleteRequest, getAllRequestsForUser, getAllRequestsFromUser, swapController } from "../controllers/swapController.js";
 import { multerUpload } from "../middlewares/multer.js";
 import jwtAuth from "../middlewares/jwtAuth.js";
 
@@ -12,6 +12,8 @@ SwapRouter.get("/requests", jwtAuth, getAllRequestsFromUser)
 SwapRouter.get("/requests/:userB", getAllRequestsForUser)
 
 SwapRouter.post("/swap", swapController)
+
+SwapRouter.delete("/requests/:id", deleteRequest)
 
 
 

@@ -47,7 +47,6 @@ const getAllRequestsForUser = async (req, res) => {
 }
 
 const swapController = async (req, res) => {
-  console.log("check userIds: ", req.body);
   const { userA, userB, nftA, nftB } = req.body;
   try {
     const result = await swapNFTs(userA, userB, nftA, nftB);
@@ -57,9 +56,24 @@ const swapController = async (req, res) => {
     res.status(500).send("Swap transaction failed");
   }
 };
+
+const deleteRequest = async (req, res) => {
+  const { id } = req.params;
+  console.log("Deleting swap with id:", id);
+
+  try {
+    // remove swap from database
+    const result = await SwapModel.findByIdAndDelete(id);
+    
+    res.status(200).json({ message: "swap deleted" });
+  } catch (err) {
+    res.status(500).json({ message: "failed to delete swap", error: err.message });
+  }
+
+}
  
 
 
-export { createSwapRequest, getAllRequestsFromUser, getAllRequestsForUser, swapController}
+export { createSwapRequest, getAllRequestsFromUser, getAllRequestsForUser, swapController, deleteRequest}
   
 

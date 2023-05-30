@@ -60,6 +60,24 @@ const Request = () => {
 
         const result = await response.json();
         setSwap(result);
+
+        // now delete the request
+        const deleteOptions = {
+          method: 'DELETE'
+        };
+
+        const deleteRequest = await fetch(`http://localhost:5001/api/swaps/requests/${swap._id}`, deleteOptions);
+
+        if (!deleteRequest.ok) {
+
+          console.error('Error deleting request', deleteRequest);
+        } else {
+          // Request was deleted successfully.
+          // Now remove the deleted request from our local state.
+          setRequests(requests.filter(request => request._id !== swap._id));
+        }
+
+
       }
       catch (error) {
         console.log('error', error);
