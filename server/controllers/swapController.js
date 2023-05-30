@@ -47,6 +47,7 @@ const getAllRequestsForUser = async (req, res) => {
 }
 
 const swapController = async (req, res) => {
+  console.log("check userIds: ", req.body);
   const { userA, userB, nftA, nftB } = req.body;
   try {
     const result = await swapNFTs(userA, userB, nftA, nftB);

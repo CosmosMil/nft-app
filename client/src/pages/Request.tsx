@@ -43,7 +43,7 @@ const Request = () => {
       myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
       const urlencoded = new URLSearchParams();
 
-      urlencoded.append("userA", userId);
+      urlencoded.append("userA", swap.userA);
       urlencoded.append("userB", swap.userB);
       urlencoded.append("nftA", swap.nftA._id);
       urlencoded.append("nftB", swap.nftB._id);
