@@ -105,8 +105,8 @@ const Sidebar = (props: Props) => {
                         className='hover:bg-slate-500 text-yellow-100 rounded mt-3'>
                         {requests.length === 1 ? 'you have 1 open request' : null}
                         {requests.length > 1 ? `you have ${requests.length} open requests` : null}
-
-                        <i className="fa-regular fa-hand"></i></button>
+                        {requests.length !== 0 ? <i className="fa-regular fa-hand"></i> : null}
+                      </button>
 
 
 
