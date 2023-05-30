@@ -102,8 +102,7 @@ const SwapNFT = () => {
         throw new Error('Something went wrong, try again!')
       }
     } catch (error) {
-      console.log(error);
-      setMessage('An error occurred, please try again later')
+      throw new Error('An error occurred, please try again later')
     }
 
   };
