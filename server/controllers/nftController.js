@@ -1,5 +1,6 @@
 import NFTModel from "../models/nftModel.js";
 import { v2 as cloudinary } from "cloudinary";
+import User from "../models/userModel.js";
 
 const getAllNFTs = async (req, res) => {
   console.log(req.params);
@@ -37,6 +38,7 @@ const getAllNFTsFromUser = async (req, res) => {
 
 const createCollection = async (req, res) => {
   const ids = [];
+  const user = req.user;
 console.log(req.files)
   try {
     // console.log("req.body.owner:", req.body.owner);
@@ -58,7 +60,7 @@ console.log(req.files)
 
     const savedToMongo = uploadedNFTs.map(async (NFT) => {
       const NFTdoc = new NFTModel({
-        owner: req.body.owner,
+        owner: user._id,
         preview: NFT.url
       })
       const saved = await NFTdoc.save();
@@ -68,10 +70,16 @@ console.log(req.files)
     })
     const savedArray = await Promise.all(savedToMongo);
     console.log(savedArray)
+
+    await User.findByIdAndUpdate(user._id, {
+      $push: { NFTs:  savedArray}
+    })
+
     res.status(200).json({
       msg: "successfully uploaded",
       NFTarray: savedArray
-})
+    })
+
   } catch (error) {
     console.error(error);
     res.status(500).json({

@@ -41,8 +41,9 @@ const getAllRequestsForUser = async (req, res) => {
 const swapController = async (req, res) => {
   const { userA, userB, nftA, nftB } = req.body;
   try {
-    await swapNFTs(userA, userB, nftA, nftB);
-    res.status(200).send("Swap transaction succeeded");
+    const result = await swapNFTs(userA, userB, nftA, nftB);
+    
+    res.status(200).send(result);
   } catch (error) {
     res.status(500).send("Swap transaction failed");
   }

@@ -44,12 +44,14 @@ interface Swap {
   userA: string,
   userB: string,
   nftA: {
+    _id: string,
     preview: string,
     name?: string,
     price?: string,
   mintdate?: string
   },
   nftB: {
+    _id: string,
     preview: string
     name?: string,
     price?: string,
