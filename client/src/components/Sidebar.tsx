@@ -5,16 +5,18 @@ import SwapNFT from '../pages/SwapNFT';
 
 
 type Props = {
-  // showSidebar: boolean;
-  // toggleSidebar: () => void;
+
+  updateRequest: (updatedRequest: Swap) => void
 }
 
 const Sidebar = (props: Props) => {
+
+
   const { user, logout } = useContext(AuthContext);
   let navigate = useNavigate();
 
   const [showSidebar, setShowSidebar] = useState(false);
-  const [requests, setRequests] = useState([]);
+  const [requests, setRequests] = useState<Swap[]>([]);
 
   const openSidebar = () => {
     setShowSidebar(true);

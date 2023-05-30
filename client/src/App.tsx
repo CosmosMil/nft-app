@@ -14,34 +14,21 @@ import Request from './pages/Request';
 
 
 function App() {
-  // const [users, setUsers] = useState<null | Users>(null);
 
-  // const getUsers = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:5001/api/user/all");
-  //     const result = await response.json();
-  //     setUsers(result);
-  //     console.log(result);
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const [requests, setRequests] = useState<Swap[]>([]);
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, [])
+  const updateRequest = (updatedRequest: Swap) => {
+    setRequests(requests => requests && requests.map(swap => swap._id === updatedRequest._id ? updatedRequest : swap));
+  }
+
+
+
 
   return (
     <>
-      {/* <div className="App">
-        <h1>heya</h1>
-        {users && users.map((user) => {
-          return <p key={user._id}>{user.username}</p>
-        })}
-      </div> */}
       <AuthContextProvider>
         <BrowserRouter>
-          <Sidebar />
+          <Sidebar updateRequest={updateRequest} />
           <Routes>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
