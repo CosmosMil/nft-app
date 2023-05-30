@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import Modal from '../components/Modal';
+import checkForToken from '../utilities/getToken.js'
 
 
 const Collection = () => {
@@ -14,25 +15,35 @@ const Collection = () => {
     setData(data => data && data.map(nft => nft._id === updatedNFT._id ? updatedNFT : nft));
   }
 
+
   useEffect(() => {
-    if (user) {
-      const loggedInUser = user._id;
+
+    const fetchData = async () => {
+      const token = checkForToken(); //get the token from local storage
+
       const requestOptions = {
         method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`, // include the token in your request header
+        },
       };
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`http://localhost:5001/api/nfts/all/${loggedInUser}`, requestOptions);
-          const result = await response.json();
-          console.log(result);
-          setData(result);
-        } catch (error) {
-          console.log('error', error);
-        }
-      };
+      try {
+        const response = await fetch(`http://localhost:5001/api/nfts/all/${user?._id}`, requestOptions);
+        const result = await response.json();
+        console.log(result);
+        setData(result);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+    if (user) {
       fetchData();
     }
   }, [user]);
+
+
+
+
 
 
   const openModal = (nft: NFT) => {

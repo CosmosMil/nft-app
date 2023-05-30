@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import checkForToken from '../utilities/getToken';
 
 type Props = {}
 
@@ -21,6 +22,7 @@ const Upload = (props: Props) => {
     e.preventDefault();
     if (user) {
 
+      const token = checkForToken();
       const submitFiles = new FormData();
       submitFiles.append("owner", user._id)
       files.forEach((file, index) => {
@@ -30,6 +32,9 @@ const Upload = (props: Props) => {
 
       const requestOptions = {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`, // include the token in your request header
+        },
         body: submitFiles,
       };
       try {
