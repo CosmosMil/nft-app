@@ -99,7 +99,7 @@ const SwapNFT = () => {
         setMessage('Your swap request was successful!')
       }
       else {
-        setMessage('Something went wrong, try again!')
+        throw new Error('Something went wrong, try again!')
       }
     } catch (error) {
       console.log(error);
