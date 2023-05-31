@@ -3,9 +3,9 @@ import { imageUpload } from "../utilities/imageManagement.js";
 import { encryptPassword, verifyPassword } from "../utilities/bycript.js";
 import { generateToken } from "../utilities/jwt.js";
 
-const testingRoute = (req, res) => {
-  res.send("testing route....");
-}
+// const testingRoute = (req, res) => {
+//   res.send("testing route....");
+// }
 
 const getUsers = async (req, res) => {
    try {
@@ -121,4 +121,4 @@ const getActiveUser = async (req, res) => {
 }
 
 
-export { testingRoute, getUsers, getUser, createUser, updateUser, login, getActiveUser}
+export { getUsers, getUser, createUser, updateUser, login, getActiveUser}

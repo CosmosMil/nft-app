@@ -99,7 +99,7 @@ const Sidebar = (props: Props) => {
                     </NavLink>
                   </li>
                   <li>
-                    <div className='text-left p-7 font-serif border-2 border-dotted border-slate-400'>
+                    <div className='text-left p-7 mt-5 font-serif border-2 border-dotted border-yellow-100'>
 
                       {' Welcome back ' + user.username + '!'} <button onClick={() => navigate(`requests/${user._id}`)}
                         className='hover:bg-slate-500 text-yellow-100 rounded mt-3'>
@@ -124,15 +124,16 @@ const Sidebar = (props: Props) => {
                       >Log Out
                       </button> </div> </li> </div>) :
                 (<div>
-                  <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
-                    <i className="fa-solid fa-hippo"></i>
-                    <span className="flex-1 ml-3 whitespace-nowrap">Log In</span> </NavLink>
+                  <li>
+                    <NavLink to="/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
+                      <i className="fa-solid fa-hippo"></i>
+                      <span className="flex-1 ml-3 whitespace-nowrap">Log In</span> </NavLink></li>
 
-
-                  <NavLink to="/register" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
-                    <i className="fa-solid fa-rocket"></i>
-                    <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
-                  </NavLink></div>)}
+                  <li>
+                    <NavLink to="/register" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-slate-500 dark:hover:bg-gray-700">
+                      <i className="fa-solid fa-rocket"></i>
+                      <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
+                    </NavLink></li></div>)}
             </div>
 
 

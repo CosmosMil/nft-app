@@ -1,7 +1,6 @@
 import express from "express";
 import { multerUpload } from "../middlewares/multer.js";
 import {
-  testingRoute,
   getUsers,
   getUser,
   createUser,
@@ -12,7 +11,7 @@ import {
 import jwtAuth from "../middlewares/jwtAuth.js";
 const userRouter = express.Router();
 
-userRouter.get("/test");
+// userRouter.get("/test");
 userRouter.get("/all", getUsers);
 userRouter.get("/id/:id", getUser);
 userRouter.get("/active", jwtAuth, getActiveUser);
