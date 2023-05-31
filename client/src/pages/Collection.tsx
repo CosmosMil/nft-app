@@ -63,7 +63,7 @@ const Collection = () => {
       <h1 className="text-5xl text-center text-indigo-400 font-serif p-5">MY COLLECTION</h1>
       <div className='p-5 border-2 border-dotted border-indigo-400'>
         <div className='text-center text-indigo-400'><p className='p-3'>
-          <i className="fa-solid fa-hand-point-down"></i> click on NFT to add / update info / delete NFT</p></div>
+          <i className="fa-solid fa-hand-point-down"></i> click on NFT to update / delete NFT</p></div>
         <div className='flex flex-wrap items-start justify-center'>
 
           {data ? data.map((nft) => {
