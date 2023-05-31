@@ -1,5 +1,5 @@
 import express from "express";
-import {getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo, getNFT} from "../controllers/nftController.js"
+import {getAllNFTs, testNew, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo, getNFT, deleteNFT} from "../controllers/nftController.js"
 import { multerUpload } from "../middlewares/multer.js";
 import jwtAuth from "../middlewares/jwtAuth.js"
 
@@ -17,6 +17,8 @@ NFTRouter.get("/info", getNFTInfo)
 
 //upload collection
 NFTRouter.post("/collection", jwtAuth, multerUpload.array("files", 6), createCollection);
+
+NFTRouter.delete("/delete/:id", deleteNFT )
 
 
 

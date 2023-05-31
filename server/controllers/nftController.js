@@ -135,4 +135,16 @@ const testNew = async (req, res) => {
     console.log(error);
   }
 };
-export { getAllNFTs, testNew, getNFT, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo };
+
+const deleteNFT = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await NFTModel.findByIdAndDelete(id);
+    res.status(200).json({ message: "NFT deleted" });
+  } catch (err) {
+    res.status(500).json({ message: "failed to delete NFT", error: err.message });
+   }
+}
+
+
+export { getAllNFTs, testNew, getNFT, createCollection, getAllNFTsFromUser, addNFTInfo, getNFTInfo, deleteNFT };
