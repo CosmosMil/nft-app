@@ -9,11 +9,17 @@ const Collection = () => {
   const [selectedNFT, setSelectedNFT] = useState<NFT | null>(null)
 
   const { user } = useContext(AuthContext);
-  const [data, setData] = useState<NFT[] | null>([]);
+  const [data, setData] = useState<NFT[]>([]);
 
   const updateNFT = (updatedNFT: NFT) => {
-    setData(data => data && data.map(nft => nft._id === updatedNFT._id ? updatedNFT : nft));
+    if (updatedNFT) {
+      setData(data => data && data.map(nft => nft._id === updatedNFT._id ? updatedNFT : nft));
+    }
   }
+
+  const removeNFT = (deletedNFT: NFT) => {
+    setData(data => data && data.filter(nft => nft._id !== deletedNFT._id));
+  };
 
 
   useEffect(() => {
@@ -57,7 +63,7 @@ const Collection = () => {
       <h1 className="text-5xl text-center text-indigo-400 font-serif p-5">MY COLLECTION</h1>
       <div className='p-5 border-2 border-dotted border-indigo-400'>
         <div className='text-center text-indigo-400'><p className='p-3'>
-          <i className="fa-solid fa-hand-point-down"></i> click on NFT to add / update info</p></div>
+          <i className="fa-solid fa-hand-point-down"></i> click on NFT to add / update info / delete NFT</p></div>
         <div className='flex flex-wrap items-start justify-center'>
 
           {data ? data.map((nft) => {
@@ -79,6 +85,7 @@ const Collection = () => {
                     visible={selectedNFT._id}
                     setSelectedNFT={setSelectedNFT}
                     updateNFT={updateNFT}  // Pass updateNFT function to Modal
+                    removeNFT={removeNFT}
 
                   />}
               </React.Fragment>

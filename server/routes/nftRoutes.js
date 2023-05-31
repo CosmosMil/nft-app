@@ -18,7 +18,7 @@ NFTRouter.get("/info", getNFTInfo)
 //upload collection
 NFTRouter.post("/collection", jwtAuth, multerUpload.array("files", 6), createCollection);
 
-NFTRouter.delete("/delete/:id", deleteNFT )
+NFTRouter.delete("/delete", deleteNFT )
 
 
 

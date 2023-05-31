@@ -12,6 +12,7 @@ type Props = {
   visible: string,
   setSelectedNFT: (nft: NFT | null) => void;
   updateNFT: (updatedNFT: NFT) => void;
+  removeNFT: (deletedNFT: NFT) => void;
 }
 
 
@@ -21,6 +22,9 @@ const Modal = (props: Props) => {
   const [open, setOpen] = useState(false);
 
   const { user } = useContext(AuthContext);
+
+  const [nftArray, setNftArray] = useState<NFT[]>([]);
+
   const [nftInfo, setNftInfo] = useState<NFT>({
     _id: props._id,
     preview: props.preview,
@@ -83,8 +87,30 @@ const Modal = (props: Props) => {
     }
     closeModal();
 
-
   };
+
+  const handleDelete = async (nft: NFT) => {
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("_id", nft._id)
+    try {
+      //delete the NFT
+      const deleteOptions = {
+        method: 'DELETE',
+        body: urlencoded
+      };
+      const deleteRequest = await fetch("http://localhost:5001/api/nfts/delete/", deleteOptions);
+
+      if (!deleteRequest.ok) {
+        console.error('Error deleting NFT', deleteRequest);
+      } else {
+        props.removeNFT(nft);
+      }
+    }
+    catch (error) {
+      console.log('error', error);
+    }
+
+  }
 
 
   // useEffect(() => {
@@ -129,7 +155,10 @@ const Modal = (props: Props) => {
               <input className='' type='text' name='mintdate' placeholder='mint date' onChange={handleChange} />
               <div className='p-2'>
                 <button type="submit" className='p-1 rounded text-yellow-100 ml-40 hover:bg-slate-500'>submit</button></div>
+              <div className='p-2'>
+                <button onClick={() => handleDelete(nftInfo)} className='p-1 rounded text-red-600 ml-40 hover:bg-slate-500'>delete NFT</button></div>
             </form>
+
 
           </div>
             <button onClick={closeModal} type="button" className="ml-2 flex items-center justify-center h-8 w-8 rounded-full hover:bg-gray-400 focus:ring-inset "><span className="sr-only">Close sidebar</span><i className="fa-solid fa-xmark" style={{ color: "#fefc78" }} ></i></button>

@@ -137,7 +137,7 @@ const testNew = async (req, res) => {
 };
 
 const deleteNFT = async (req, res) => {
-  const { id } = req.params;
+  const  id = req.body._id;
   try {
     const result = await NFTModel.findByIdAndDelete(id);
     res.status(200).json({ message: "NFT deleted" });
