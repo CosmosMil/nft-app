@@ -1,40 +1,42 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
+import { RequestContext } from '../contexts/RequestContext';
 import SwapNFT from './SwapNFT';
 
 const Request = () => {
   const { user } = useContext(AuthContext);
-  const [requests, setRequests] = useState<Swap[]>([]);
+  // const [requests, setRequests] = useState<Swap[]>([]);
+  const { requests, setRequests } = useContext(RequestContext);
   const [swap, setSwap] = useState();
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (user) {
-      const userId = user._id;
+  //   if (user) {
+  //     const userId = user._id;
 
-      const requestOptions = {
-        method: 'GET',
-      };
+  //     const requestOptions = {
+  //       method: 'GET',
+  //     };
 
-      const showRequests = async () => {
+  //     const showRequests = async () => {
 
-        try {
-          const response = await fetch(`http://localhost:5001/api/swaps/requests/${userId}`, requestOptions)
+  //       try {
+  //         const response = await fetch(`http://localhost:5001/api/swaps/requests/${userId}`, requestOptions)
 
-          const result = await response.json();
-          console.log(result)
-          setRequests(result);
-        }
-        catch (error) {
-          console.log('error', error);
-        }
-      };
+  //         const result = await response.json();
+  //         console.log(result)
+  //         setRequests(result);
+  //       }
+  //       catch (error) {
+  //         console.log('error', error);
+  //       }
+  //     };
 
-      showRequests();
-    }
-  }, [user]);
+  //     showRequests();
+  //   }
+  // }, [user]);
 
 
   const handleYes = async (swap: Swap) => {
@@ -89,7 +91,9 @@ const Request = () => {
       } else {
         // Request was deleted successfully.
         // Now remove the deleted request from our local state.
-        setRequests(requests.filter(request => request._id !== swap._id));
+        if (requests !== null) {
+          setRequests(requests.filter(request => request._id !== swap._id));
+        }
       }
     }
     catch (error) {

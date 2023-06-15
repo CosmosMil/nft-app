@@ -7,7 +7,7 @@ import { request } from 'https';
 
 type Props = {
 
-  updateRequest: (updatedRequest: Swap) => void
+  // updateRequest: (updatedRequest: Swap) => void
 }
 
 const Sidebar = (props: Props) => {

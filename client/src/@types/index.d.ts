@@ -40,6 +40,8 @@ interface NFT {
 }
 
 interface Swap {
+  map(arg0: (swap: Swap) => JSX.Element): React.ReactNode
+  filter(arg0: (request: any) => boolean): React.SetStateAction<Swap | null>
   _id: string,
   userA: string,
   userB: string,
