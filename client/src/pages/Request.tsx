@@ -5,38 +5,8 @@ import SwapNFT from './SwapNFT';
 
 const Request = () => {
   const { user } = useContext(AuthContext);
-  // const [requests, setRequests] = useState<Swap[]>([]);
   const { requests, setRequests } = useContext(RequestContext);
   const [swap, setSwap] = useState();
-
-
-
-  // useEffect(() => {
-
-  //   if (user) {
-  //     const userId = user._id;
-
-  //     const requestOptions = {
-  //       method: 'GET',
-  //     };
-
-  //     const showRequests = async () => {
-
-  //       try {
-  //         const response = await fetch(`http://localhost:5001/api/swaps/requests/${userId}`, requestOptions)
-
-  //         const result = await response.json();
-  //         console.log(result)
-  //         setRequests(result);
-  //       }
-  //       catch (error) {
-  //         console.log('error', error);
-  //       }
-  //     };
-
-  //     showRequests();
-  //   }
-  // }, [user]);
 
 
   const handleYes = async (swap: Swap) => {
