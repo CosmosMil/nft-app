@@ -9,10 +9,6 @@ interface AuthContextType {
   logout(): void
 }
 
-// export const AuthContext = createContext<AuthContextType | null>(null); // not recommended
-// export const AuthContext = createContext<AuthContextType>({} as AuthContextType); // less recommended
-// export const AuthContext = createContext<AuthContextType>(null!); // less recommended
-
 const initialAuth: AuthContextType = {
   user: null,
   error: null,
@@ -59,7 +55,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
     } catch (error) {
       console.log(error);
-      // setError(error); //I still have to figure out how to type the unknown fetch results
       alert("Something went wrong - check console for error")
     }
 
