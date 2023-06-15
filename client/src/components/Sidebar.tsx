@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import SwapNFT from '../pages/SwapNFT';
+import { request } from 'https';
 
 
 type Props = {
@@ -101,12 +102,15 @@ const Sidebar = (props: Props) => {
                   <li>
                     <div className='text-left p-7 mt-5 font-serif border-2 border-dotted border-yellow-100'>
 
-                      {' Welcome back ' + user.username + '!'} <button onClick={() => navigate(`requests/${user._id}`)}
-                        className='hover:bg-slate-500 text-yellow-100 rounded mt-3'>
-                        {requests.length === 1 ? 'you have 1 open request' : null}
-                        {requests.length > 1 ? `you have ${requests.length} open requests` : null}
-                        {requests.length !== 0 ? <i className="fa-regular fa-hand"></i> : null}
-                      </button>
+                      {' Welcome back ' + user.username + '!'}
+                      {requests &&
+
+                        <button onClick={() => navigate(`requests/${user._id}`)}
+                          className='hover:bg-slate-500 text-yellow-100 rounded mt-3'>
+
+                          {requests.length === 1 && 'you have 1 open request'}
+                          {requests.length > 1 && `you have ${requests.length} requests`}
+                        </button>}
 
 
 
