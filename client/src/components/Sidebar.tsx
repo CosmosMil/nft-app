@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
+import { RequestContext } from '../contexts/RequestContext';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import SwapNFT from '../pages/SwapNFT';
 import { request } from 'https';
@@ -16,8 +17,10 @@ const Sidebar = (props: Props) => {
   const { user, logout } = useContext(AuthContext);
   let navigate = useNavigate();
 
+  const { requests, setRequests } = useContext(RequestContext);
+
   const [showSidebar, setShowSidebar] = useState(false);
-  const [requests, setRequests] = useState<Swap[]>([]);
+
 
   const openSidebar = () => {
     setShowSidebar(true);
