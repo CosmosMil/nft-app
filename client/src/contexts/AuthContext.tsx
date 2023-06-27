@@ -39,7 +39,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       body: urlencoded,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/login`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/login`, requestOptions);
       console.log("this", response);
       if (response.ok) {
         const result = await response.json() as fetchResult

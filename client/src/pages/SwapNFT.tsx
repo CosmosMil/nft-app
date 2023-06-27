@@ -36,7 +36,7 @@ const SwapNFT = () => {
 
       const fetchData = async () => {
         try {
-          const response = await fetch(`${process.env.REACT_APP_BASE_URL} / api / nfts /all/${loggedInUser}`, requestOptions);
+          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/all/${loggedInUser}`, requestOptions);
           const result = await response.json();
           setCollectionData(result);
         } catch (error) {
