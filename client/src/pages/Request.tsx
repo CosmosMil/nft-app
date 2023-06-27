@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { RequestContext } from '../contexts/RequestContext';
-import SwapNFT from './SwapNFT';
 
 const Request = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +11,7 @@ const Request = () => {
   const handleYes = async (swap: Swap) => {
 
     if (user) {
-      const userId = user._id;
+
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
       const urlencoded = new URLSearchParams();
