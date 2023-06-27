@@ -1,5 +1,4 @@
-import userEvent from '@testing-library/user-event'
-import { stringify } from 'querystring';
+
 import React, { useContext, useEffect, useState, FormEvent, ChangeEvent } from 'react'
 import { SubmitOptions } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
@@ -45,9 +44,6 @@ const Modal = (props: Props) => {
 
   }, [props.visible])
 
-  // useEffect(() => {
-  //   setNftInfo(nftInfo => ({ ...nftInfo, _id: props._id }));
-  // }, [props._id]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value !== '') {
@@ -59,10 +55,7 @@ const Modal = (props: Props) => {
     e.preventDefault();
 
     if (user) {
-      // const updateData = {
 
-      //   ...nftInfo
-      // };
 
       const submitData = JSON.stringify({ ...nftInfo })
 
@@ -113,26 +106,6 @@ const Modal = (props: Props) => {
   }
 
 
-  // useEffect(() => {
-
-
-  //   const nftInfo = async (_id: string) => {
-  //     const urlencoded = new URLSearchParams();
-  //     urlencoded.append("_id", _id);
-  //     const requestOptions = {
-  //       method: 'GET',
-  //     };
-  //     try {
-  //       const response = await fetch(`http://localhost:5001/api/nfts/info?${_id}`, requestOptions)
-  //       const result = await response.json();
-  //       console.log(result);
-  //       setNftInfo(result);
-  //     } catch (error) {
-  //       console.log('error', error);
-  //     }
-  //   };
-  //   nftInfo(_id);
-  // }, [_id]);
 
   const closeModal = () => {
     setOpen(false);
