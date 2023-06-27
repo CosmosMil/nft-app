@@ -11,7 +11,7 @@ type Users = User[]
 
 const Homepage = (props: Props) => {
 
-  console.log(process.env.NODE_ENV);
+
   return (
     <>
 
@@ -51,7 +51,7 @@ const Homepage = (props: Props) => {
 
             </div>
             <div className="flex items-center justify-center rounded ">
-              <img src="images/nft-banner.jpg" className='object-contain' alt="NFT-banner" />
+              <img src={`${process.env.PUBLIC_URL}/images/nft-banner.jpg`} className='object-contain' alt="NFT-banner" />
 
             </div>
 
