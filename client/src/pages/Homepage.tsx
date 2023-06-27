@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react'
-import Sidebar from '../components/Sidebar'
-
 
 type Props = {}
 
@@ -14,58 +11,14 @@ type Users = User[]
 
 const Homepage = (props: Props) => {
 
-  // const [showSidebar, setShowSidebar] = useState(false);
-
-  // const toggleSidebar = () => {
-  //   setShowSidebar(!showSidebar);
-  // };
-
-
-  // const [users, setUsers] = useState<Users>([]);
-  // const [user, setUser] = useState<User | null>(null);
-
-  // const getUsers = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:5001/api/user/all");
-  //     const result = await response.json();
-  //     setUsers(result);
-  //     console.log("all users:", result)
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // const getUserById = async () => {
-  //   const id = "6447a2bc1362e69f068f823b";
-  //   try {
-  //     const response = await fetch(`http://localhost:5000/api/users/id/${id}`);
-  //     const result = await response.json();
-  //     console.log("single user:", result);
-  //     setUser(result);
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   // getUsers();
-  //   getUserById();
-  // }, [])
-
   return (
     <>
-      {/* <Sidebar /> */}
-      <div className="p-4 sm:ml-64"
-      // onClick={() => {
-      //   if (showSidebar) {
-      //     toggleSidebar();
-      //   }
-      // }}
-      >
+
+      <div className="p-4 sm:ml-64">
         <div>
           <div className="grid grid-cols-3 mb-4 gap-4">
             <div className="flex items-center justify-center">
-              <img src="images/cryptopunk.jpg" />
+              <img src="images/cryptopunk.jpg" alt="cryptopunk" />
             </div>
             <div className='grid items-center justify-center p-4 '>
               <span className='text-yellow-100'>LOG IN / <br />SIGN UP <br />AND SWAP<br />NFTS</span>
@@ -76,7 +29,7 @@ const Homepage = (props: Props) => {
 
             </div>
             <div className="flex items-center justify-center">
-              <img src="images/orbital-ape.png" />
+              <img src="images/orbital-ape.png" alt="orbital ape" />
             </div>
 
           </div>
@@ -92,12 +45,12 @@ const Homepage = (props: Props) => {
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="flex items-center justify-center ">
               <div className="flex items-center justify-center">
-                <img src="images/crego.jpg" />
+                <img src="images/crego.jpg" alt="NFT by Crego" />
               </div>
 
             </div>
             <div className="flex items-center justify-center rounded ">
-              <img src="images/nft-banner.jpg" className='object-contain' />
+              <img src="images/nft-banner.jpg" className='object-contain' alt="NFT-banner" />
 
             </div>
 
