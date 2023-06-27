@@ -39,7 +39,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       body: urlencoded,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/login`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/user/login`, requestOptions);
       console.log("this", response);
       if (response.ok) {
         const result = await response.json() as fetchResult
@@ -85,7 +85,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       headers: myHeaders,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/active`, requestOptions)
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/user/active`, requestOptions)
       const result = await response.json();
       console.log("active user result:", result);
       setUser(result);
