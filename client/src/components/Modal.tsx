@@ -69,7 +69,7 @@ const Modal = (props: Props) => {
       console.log('nftInfo: ', nftInfo);
 
       try {
-        const response = await fetch("http://localhost:5001/api/nfts/update", requestOptions)
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/update`, requestOptions)
         const result = await response.json();
 
         props.updateNFT(result);

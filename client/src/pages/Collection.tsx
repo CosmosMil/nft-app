@@ -34,7 +34,7 @@ const Collection = () => {
         },
       };
       try {
-        const response = await fetch(`http://localhost:5001/api/nfts/all/${user?._id}`, requestOptions);
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/all/${user?._id}`, requestOptions);
         const result = await response.json();
         console.log(result);
         setData(result);

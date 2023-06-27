@@ -30,7 +30,7 @@ const Request = () => {
 
 
       try {
-        const response = await fetch("http://localhost:5001/api/swaps/swap", requestOptions)
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/swaps/swap`, requestOptions)
 
         const result = await response.json();
         setSwap(result);
@@ -52,7 +52,7 @@ const Request = () => {
         method: 'DELETE'
       };
 
-      const deleteRequest = await fetch(`http://localhost:5001/api/swaps/requests/${swap._id}`, deleteOptions);
+      const deleteRequest = await fetch(`${process.env.REACT_APP_BASE_URL}/api/swaps/requests/${swap._id}`, deleteOptions);
 
       if (!deleteRequest.ok) {
 

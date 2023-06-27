@@ -38,7 +38,7 @@ const Upload = (props: Props) => {
         body: submitFiles,
       };
       try {
-        const response = await fetch("http://localhost:5001/api/nfts/collection", requestOptions);
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/collection`, requestOptions);
         const result = await response.json();
         console.log(result);
       } catch (error) {

@@ -25,7 +25,7 @@ const SwapNFT = () => {
       const fetchNFT = async () => {
         try {
           const response = await fetch
-            (`http://localhost:5001/api/nfts/id/${id}`, requestOptions);
+            (`${process.env.REACT_APP_BASE_URL}/api/nfts/id/${id}`, requestOptions);
           const result = await response.json();
           setNftData(result);
         } catch (error) {
@@ -36,7 +36,7 @@ const SwapNFT = () => {
 
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://localhost:5001/api/nfts/all/${loggedInUser}`, requestOptions);
+          const response = await fetch(`${process.env.REACT_APP_BASE_URL} / api / nfts /all/${loggedInUser}`, requestOptions);
           const result = await response.json();
           setCollectionData(result);
         } catch (error) {
@@ -57,7 +57,7 @@ const SwapNFT = () => {
     };
     try {
       const response = await fetch
-        (`http://localhost:5001/api/nfts/id/${id}`, requestOptions);
+        (`${process.env.REACT_APP_BASE_URL}/api/nfts/id/${id}`, requestOptions);
       const result = await response.json();
       setChosenNft(result);
     } catch (error) {
@@ -92,7 +92,7 @@ const SwapNFT = () => {
       body: urlencoded,
     };
     try {
-      const response = await fetch('http://localhost:5001/api/swaps/new/', requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/swaps/new/`, requestOptions);
       const result = await response.json();
       console.log(result);
       if (response.ok) {

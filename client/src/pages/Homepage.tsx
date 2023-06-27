@@ -11,6 +11,7 @@ type Users = User[]
 
 const Homepage = (props: Props) => {
 
+  console.log(process.env.NODE_ENV);
   return (
     <>
 

@@ -17,7 +17,7 @@ const Browse = () => {
 
       try {
 
-        const response = await fetch("http://localhost:5001/api/nfts/all", requestOptions);
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/all`, requestOptions);
         const result = await response.json();
 
         // filter data if user is defined
