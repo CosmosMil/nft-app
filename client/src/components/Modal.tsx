@@ -91,7 +91,7 @@ const Modal = (props: Props) => {
         method: 'DELETE',
         body: urlencoded
       };
-      const deleteRequest = await fetch("http://localhost:5001/api/nfts/delete/", deleteOptions);
+      const deleteRequest = await fetch("https://nft-app-server.vercel.app/api/nfts/delete/", deleteOptions);
 
       if (!deleteRequest.ok) {
         console.error('Error deleting NFT', deleteRequest);
