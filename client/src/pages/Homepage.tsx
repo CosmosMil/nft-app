@@ -50,7 +50,7 @@ const Homepage = (props: Props) => {
 
             </div>
             <div className="flex items-center justify-center rounded ">
-              <img src="images/nft-banner.jpg" className='object-contain' alt="NFT-banner" />
+              <img src="images/nft-banner.jpg" alt="NFT-banner" />
 
             </div>
 
