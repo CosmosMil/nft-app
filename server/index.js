@@ -22,7 +22,7 @@ const setMiddlewares = () => {
 
   const allowedOrigins = [
     "http://localhost:5001",
-    "https://nft-app-frontend.vercel.app/",
+    "https://swap-nfts.vercel.app",
   ];
   const corsOptions = {
     origin: function (origin, callback) {
