@@ -51,7 +51,7 @@ const Homepage = (props: Props) => {
 
             </div>
             <div className="flex items-center justify-center rounded ">
-              <img src={`${process.env.PUBLIC_URL}/images/nft-banner.jpg`} className='object-contain' alt="NFT-banner" />
+              <img src={"https://res.cloudinary.com/dte85mpkw/image/upload/v1688633868/NFT-banner_dpw4ss.jpg"} className='object-contain' alt="NFT-banner" />
 
             </div>
 
