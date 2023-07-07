@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import Modal from '../components/Modal';
 import checkForToken from '../utilities/getToken.js'
+import { serverURL } from '../utilities/serverURL';
 
 
 const Collection = () => {
@@ -34,7 +35,7 @@ const Collection = () => {
         },
       };
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/all/${user?._id}`, requestOptions);
+        const response = await fetch(`${serverURL}/api/nfts/all/${user?._id}`, requestOptions);
         const result = await response.json();
         console.log(result);
         setData(result);

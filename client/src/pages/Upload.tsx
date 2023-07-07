@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent, FormEvent, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import checkForToken from '../utilities/getToken';
+import { serverURL } from '../utilities/serverURL';
 
 type Props = {}
 
@@ -38,7 +39,7 @@ const Upload = (props: Props) => {
         body: submitFiles,
       };
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/collection`, requestOptions);
+        const response = await fetch(`${serverURL}/api/nfts/collection`, requestOptions);
         const result = await response.json();
         console.log(result);
       } catch (error) {

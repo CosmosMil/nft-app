@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { RequestContext } from '../contexts/RequestContext';
+import { serverURL } from '../utilities/serverURL';
 
 const Request = () => {
   const { user } = useContext(AuthContext);
@@ -30,7 +31,7 @@ const Request = () => {
 
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/swaps/swap`, requestOptions)
+        const response = await fetch(`${serverURL}/api/swaps/swap`, requestOptions)
 
         const result = await response.json();
         setSwap(result);
@@ -52,7 +53,7 @@ const Request = () => {
         method: 'DELETE'
       };
 
-      const deleteRequest = await fetch(`${process.env.REACT_APP_BASE_URL}/api/swaps/requests/${swap._id}`, deleteOptions);
+      const deleteRequest = await fetch(`${serverURL}/api/swaps/requests/${swap._id}`, deleteOptions);
 
       if (!deleteRequest.ok) {
 

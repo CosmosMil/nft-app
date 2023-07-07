@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { RequestContext } from '../contexts/RequestContext';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { serverURL } from '../utilities/serverURL';
 
 
 type Props = {
@@ -40,7 +41,7 @@ const Sidebar = (props: Props) => {
       const showRequests = async () => {
 
         try {
-          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/swaps/requests/${userId}`, requestOptions)
+          const response = await fetch(`${serverURL}/api/swaps/requests/${userId}`, requestOptions)
 
           const result = await response.json();
           setRequests(result);

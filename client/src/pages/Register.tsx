@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { serverURL } from '../utilities/serverURL';
 
 
 type Props = {}
@@ -39,7 +40,7 @@ const Register = (props: Props) => {
       body: submitData,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}user/new`, requestOptions);
+      const response = await fetch(`${serverURL}user/new`, requestOptions);
       const result = await response.json();
       console.log(result);
       navigate('/login')

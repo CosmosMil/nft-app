@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { AuthContext, AuthContextProvider } from '../contexts/AuthContext'
+import { serverURL } from '../utilities/serverURL';
 
 const SwapNFT = () => {
 
@@ -25,7 +26,7 @@ const SwapNFT = () => {
       const fetchNFT = async () => {
         try {
           const response = await fetch
-            (`${process.env.REACT_APP_BASE_URL}/api/nfts/id/${id}`, requestOptions);
+            (`${serverURL}/api/nfts/id/${id}`, requestOptions);
           const result = await response.json();
           setNftData(result);
         } catch (error) {
@@ -36,7 +37,7 @@ const SwapNFT = () => {
 
       const fetchData = async () => {
         try {
-          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/all/${loggedInUser}`, requestOptions);
+          const response = await fetch(`${serverURL}/api/nfts/all/${loggedInUser}`, requestOptions);
           const result = await response.json();
           setCollectionData(result);
         } catch (error) {
@@ -57,7 +58,7 @@ const SwapNFT = () => {
     };
     try {
       const response = await fetch
-        (`${process.env.REACT_APP_BASE_URL}/api/nfts/id/${id}`, requestOptions);
+        (`${serverURL}/api/nfts/id/${id}`, requestOptions);
       const result = await response.json();
       setChosenNft(result);
     } catch (error) {
@@ -92,7 +93,7 @@ const SwapNFT = () => {
       body: urlencoded,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/swaps/new/`, requestOptions);
+      const response = await fetch(`${serverURL}/api/swaps/new/`, requestOptions);
       const result = await response.json();
       console.log(result);
       if (response.ok) {

@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useContext, useState, useEffect, SetStateAction } from "react"
 import { AuthContext } from '../contexts/AuthContext'
+import { serverURL } from "../utilities/serverURL";
 
 interface RequestContextType {
   requests: Swap | null;
@@ -34,7 +35,7 @@ export const RequestContextProvider = ({ children }: { children: ReactNode }) =>
       const showRequests = async () => {
 
         try {
-          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/swaps/requests/${userId}`, requestOptions)
+          const response = await fetch(`${serverURL}/api/swaps/requests/${userId}`, requestOptions)
 
           const result = await response.json();
           console.log(result)

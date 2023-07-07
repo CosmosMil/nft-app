@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import { serverURL } from '../utilities/serverURL';
 
 const Browse = () => {
   const [data, setData] = useState<NFT[] | null>(null);
@@ -17,7 +18,7 @@ const Browse = () => {
 
       try {
 
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/all`, requestOptions);
+        const response = await fetch(`${serverURL}/api/nfts/all`, requestOptions);
         const result = await response.json();
 
         // filter data if user is defined

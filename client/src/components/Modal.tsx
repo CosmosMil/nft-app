@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState, FormEvent, ChangeEvent } from 'react'
 import { SubmitOptions } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import { serverURL } from '../utilities/serverURL';
 
 type Props = {
 
@@ -69,7 +70,7 @@ const Modal = (props: Props) => {
       console.log('nftInfo: ', nftInfo);
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/nfts/update`, requestOptions)
+        const response = await fetch(`${serverURL}/api/nfts/update`, requestOptions)
         const result = await response.json();
 
         props.updateNFT(result);
