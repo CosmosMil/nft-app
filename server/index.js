@@ -20,36 +20,42 @@ const setMiddlewares = () => {
     })
   );
 
-  const allowedOrigins = [
-    "http://localhost:5001",
-    "https://swap-nfts.vercel.app",
-  ];
-  const corsOptions = {
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-  };
+  // const allowedOrigins = [
+  //   "http://localhost:5001",
+  //   "https://swap-nfts.vercel.app",
+  // ];
+  // const corsOptions = {
+  //   origin: function (origin, callback) {
+  //     if (allowedOrigins.indexOf(origin) !== -1) {
+  //       callback(null, true);
+  //     } else {
+  //       callback(new Error("Not allowed by CORS"));
+  //     }
+  //   },
+  // };
   
   app.use(cors());
   cloudinaryConfig();
   passportConfig();
 };
 
+const connectServer = () => {
+  
+  app.listen(port, () => {
+
+    console.log("Server is running on port ", port);
+  });
+} 
+
 
 const connectMongoose = () => {
   mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
-      app.listen(port, () => {
-        console.log(
-          "Connection to MongoDB established, and server is running on port " +
-            port
+      console.log(
+          "Connection to MongoDB established"
         );
-      });
+      
     })
     .catch((err) => console.log(err));
 };
@@ -61,7 +67,11 @@ const connectRoutes = () => {
   app.use("*", (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 };
 
+async function controller() {
 setMiddlewares();
-connectMongoose();
-connectRoutes();
+await connectMongoose();
+  connectRoutes();
+  connectServer();  
+}
 
+controller()
