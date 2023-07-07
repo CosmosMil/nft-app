@@ -40,7 +40,7 @@ const Register = (props: Props) => {
       body: submitData,
     };
     try {
-      const response = await fetch(`${serverURL}user/new`, requestOptions);
+      const response = await fetch(`${serverURL}/api/user/new`, requestOptions);
       const result = await response.json();
       console.log(result);
       navigate('/login')
