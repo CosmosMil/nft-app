@@ -14,7 +14,7 @@ const app = express();
 const port = process.env.PORT || 5001;
 
   const allowedOrigins = [
-    "http://localhost:5001",
+    "http://localhost:3000",
     "https://swap-nfts.vercel.app",
   ];
   const corsOptions = {
@@ -64,11 +64,6 @@ app.listen(port, () => {
 console.log("Server is running on port ", port);
   });
 } 
-
-
-
-
-
 
 async function controller() {
 setMiddlewares();
