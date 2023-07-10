@@ -46,10 +46,11 @@ console.log(req.files)
       const uploadResult = await cloudinary.uploader.upload(file.path, {
         folder: "nft-collections",
       });
+      console.log("uploadResult :>> ", uploadResult);
       // console.log("result.public_id", uploadResult.public_id);
       ids.push(uploadResult.public_id);
       return {
-        url: uploadResult.url,
+        url: uploadResult.secure_url,
         publicId: uploadResult.public_id,
       };
     });
