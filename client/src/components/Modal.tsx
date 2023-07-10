@@ -67,7 +67,7 @@ const Modal = (props: Props) => {
         headers: { 'Content-Type': 'application/json' },
         body: submitData,
       };
-      console.log('nftInfo: ', nftInfo);
+      // console.log('nftInfo: ', nftInfo);
 
       try {
         const response = await fetch(`${serverURL}/api/nfts/update`, requestOptions)

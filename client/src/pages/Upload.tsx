@@ -41,7 +41,7 @@ const Upload = (props: Props) => {
       try {
         const response = await fetch(`${serverURL}/api/nfts/collection`, requestOptions);
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
       } catch (error) {
         console.log('error', error);
       }

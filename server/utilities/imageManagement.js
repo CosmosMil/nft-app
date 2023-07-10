@@ -6,7 +6,7 @@ const imageUpload = async (file, folder) => {
       const result = await cloudinary.uploader.upload(file.path, {
         folder: folder,
       });
-      console.log(result);
+      // console.log(result);
       return result.secure_url;
     } catch (e) {
       console.log(e);

@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [error, setError] = useState<Error | null>(null);
 
   const login = async (email: string, password: string) => {
-    console.log({ email: email, password: password })
+    // console.log({ email: email, password: password })
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     const urlencoded = new URLSearchParams();
@@ -41,14 +41,14 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     };
     try {
       const response = await fetch(`${serverURL}/api/user/login`, requestOptions);
-      console.log("this", response);
+
       if (response.ok) {
         const result = await response.json() as fetchResult
         if (result.user) {
           setUser(result.user);
           localStorage.setItem("token", result.token);
         }
-        console.log(result);
+        // console.log(result);
       } else {
         const result = await response.json() as fetchFailed
         alert(result.error)
@@ -88,7 +88,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await fetch(`${serverURL}/api/user/active`, requestOptions)
       const result = await response.json();
-      console.log("active user result:", result);
+      // console.log("active user result:", result);
       setUser(result);
     } catch (error) {
       console.log(error)

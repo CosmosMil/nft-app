@@ -12,20 +12,19 @@ const swapNFTs = async (userA, userB, nftA, nftB) => {
 
     // get the users
     const userAId = await User.findById(userA).session(session);
-    console.log("userA ", userAId)
     const userBId = await User.findById(userB).session(session);
-    console.log("userB ", userBId);
+   
 
 
     //find the NFT documents
     const nftADoc = await NFTModel.findById({ _id: nftA, owner: userA }).session(
       session
     );
-    console.log("nftA", nftADoc);
+
     const nftBDoc = await NFTModel.findOne({ _id: nftB, owner: userB }).session(
       session
     );
-    console.log("nftB", nftBDoc);
+   
 
     //make sure all documents are existent
     if (

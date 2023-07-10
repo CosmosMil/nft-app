@@ -95,7 +95,7 @@ const SwapNFT = () => {
     try {
       const response = await fetch(`${serverURL}/api/swaps/new/`, requestOptions);
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       if (response.ok) {
         setMessage('Your swap request was successful!')
       }

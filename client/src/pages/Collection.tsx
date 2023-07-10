@@ -37,7 +37,7 @@ const Collection = () => {
       try {
         const response = await fetch(`${serverURL}/api/nfts/all/${user?._id}`, requestOptions);
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
         setData(result);
       } catch (error) {
         console.log('error', error);

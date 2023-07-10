@@ -29,7 +29,7 @@ const Register = (props: Props) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData)
+    // console.log(formData)
     const submitData = new FormData();
     submitData.append("email", formData.email);
     submitData.append("username", formData.username);
@@ -42,7 +42,7 @@ const Register = (props: Props) => {
     try {
       const response = await fetch(`${serverURL}/api/user/new`, requestOptions);
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       navigate('/login')
     }
 

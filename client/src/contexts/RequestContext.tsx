@@ -38,7 +38,7 @@ export const RequestContextProvider = ({ children }: { children: ReactNode }) =>
           const response = await fetch(`${serverURL}/api/swaps/requests/${userId}`, requestOptions)
 
           const result = await response.json();
-          console.log(result)
+          // console.log(result)
           setRequests(result);
         }
         catch (error) {
