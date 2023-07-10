@@ -20,21 +20,21 @@ const setMiddlewares = () => {
     })
   );
 
-  // const allowedOrigins = [
-  //   "http://localhost:5001",
-  //   "https://swap-nfts.vercel.app",
-  // ];
-  // const corsOptions = {
-  //   origin: function (origin, callback) {
-  //     if (allowedOrigins.indexOf(origin) !== -1) {
-  //       callback(null, true);
-  //     } else {
-  //       callback(new Error("Not allowed by CORS"));
-  //     }
-  //   },
-  // };
+  const allowedOrigins = [
+    "http://localhost:5001",
+    "https://swap-nfts.vercel.app",
+  ];
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  };
   
-  app.use(cors());
+  app.use(cors(corsOptions));
   cloudinaryConfig();
   passportConfig();
 };
